@@ -1,0 +1,196 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Cards/CardBase.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Cards/CardExtras/cardborder.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Cards/CardExtras/background shade.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Cards/CardExtras/Back_Texture.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Cards/CardExtras/Gold_Border.png" type="Texture" id=5]
+
+[node name="CardBase" type="MarginContainer"]
+margin_right = 250.0
+margin_bottom = 350.0
+rect_pivot_offset = Vector2( 125, 175 )
+script = ExtResource( 1 )
+
+[node name="Card" type="Sprite" parent="."]
+centered = false
+
+[node name="Border" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Bars" type="VBoxContainer" parent="."]
+margin_right = 250.0
+margin_bottom = 350.0
+
+[node name="TopGap" type="MarginContainer" parent="Bars"]
+margin_right = 250.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+
+[node name="TopBar" type="HBoxContainer" parent="Bars"]
+margin_top = 29.0
+margin_right = 250.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 200, 15 )
+
+[node name="Leftgap" type="MarginContainer" parent="Bars/TopBar"]
+margin_bottom = 15.0
+
+[node name="Name" type="MarginContainer" parent="Bars/TopBar"]
+margin_left = 4.0
+margin_right = 32.0
+margin_bottom = 15.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/TopBar/Name"]
+margin_right = 28.0
+margin_bottom = 15.0
+texture = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/TopBar/Name"]
+margin_right = 28.0
+margin_bottom = 15.0
+
+[node name="Name" type="Label" parent="Bars/TopBar/Name/CenterContainer"]
+margin_right = 28.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 25, 0 )
+text = "Atak"
+
+[node name="MidGap" type="MarginContainer" parent="Bars/TopBar"]
+margin_left = 36.0
+margin_right = 209.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+
+[node name="Cost" type="MarginContainer" parent="Bars/TopBar"]
+margin_left = 213.0
+margin_right = 221.0
+margin_bottom = 15.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/TopBar/Cost"]
+margin_right = 8.0
+margin_bottom = 15.0
+texture = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/TopBar/Cost"]
+margin_right = 8.0
+margin_bottom = 15.0
+
+[node name="Cost" type="Label" parent="Bars/TopBar/Cost/CenterContainer"]
+margin_right = 8.0
+margin_bottom = 14.0
+text = "1"
+
+[node name="RightGap" type="MarginContainer" parent="Bars/TopBar"]
+margin_left = 225.0
+margin_right = 250.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="MidGap" type="MarginContainer" parent="Bars"]
+margin_top = 48.0
+margin_right = 250.0
+margin_bottom = 234.0
+size_flags_vertical = 3
+
+[node name="SpecialText" type="HBoxContainer" parent="Bars"]
+margin_top = 238.0
+margin_right = 250.0
+margin_bottom = 253.0
+rect_min_size = Vector2( 200, 15 )
+
+[node name="Leftgap" type="MarginContainer" parent="Bars/SpecialText"]
+margin_bottom = 15.0
+
+[node name="Type" type="MarginContainer" parent="Bars/SpecialText"]
+margin_left = 4.0
+margin_right = 38.0
+margin_bottom = 15.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/SpecialText/Type"]
+margin_right = 34.0
+margin_bottom = 15.0
+texture = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/SpecialText/Type"]
+margin_right = 34.0
+margin_bottom = 15.0
+
+[node name="Type" type="Label" parent="Bars/SpecialText/Type/CenterContainer"]
+margin_right = 34.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 25, 0 )
+text = "Akcja"
+
+[node name="MidGap" type="MarginContainer" parent="Bars/SpecialText"]
+margin_left = 42.0
+margin_right = 250.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+
+[node name="LowerGap" type="MarginContainer" parent="Bars"]
+margin_top = 257.0
+margin_right = 250.0
+margin_bottom = 297.0
+rect_min_size = Vector2( 0, 40 )
+
+[node name="BottomBar" type="HBoxContainer" parent="Bars"]
+margin_top = 301.0
+margin_right = 250.0
+margin_bottom = 316.0
+rect_min_size = Vector2( 200, 15 )
+
+[node name="Leftgap" type="MarginContainer" parent="Bars/BottomBar"]
+margin_bottom = 15.0
+
+[node name="Value" type="MarginContainer" parent="Bars/BottomBar"]
+margin_left = 4.0
+margin_right = 29.0
+margin_bottom = 15.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Bars/BottomBar/Value"]
+margin_right = 25.0
+margin_bottom = 15.0
+texture = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="Bars/BottomBar/Value"]
+margin_right = 25.0
+margin_bottom = 15.0
+
+[node name="Value" type="Label" parent="Bars/BottomBar/Value/CenterContainer"]
+margin_right = 25.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 25, 0 )
+text = "1"
+
+[node name="MidGap" type="MarginContainer" parent="Bars/BottomBar"]
+margin_left = 33.0
+margin_right = 221.0
+margin_bottom = 15.0
+size_flags_horizontal = 3
+
+[node name="RightGap" type="MarginContainer" parent="Bars/BottomBar"]
+margin_left = 225.0
+margin_right = 250.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 25, 0 )
+
+[node name="BottomGap" type="MarginContainer" parent="Bars"]
+margin_top = 320.0
+margin_right = 250.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 0, 30 )
+
+[node name="Focus" type="TextureButton" parent="."]
+margin_right = 250.0
+margin_bottom = 350.0
+texture_hover = ExtResource( 5 )
+expand = true
+
+[node name="CardBack" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+centered = false
+
+[connection signal="mouse_entered" from="Focus" to="." method="_on_Focus_mouse_entered"]
+[connection signal="mouse_exited" from="Focus" to="." method="_on_Focus_mouse_exited"]
