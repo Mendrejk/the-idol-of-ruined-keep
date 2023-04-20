@@ -21,3 +21,6 @@ func ChangeHealth(Number):
 	CurrentHealth -= Number
 	$VBoxContainer/Bar/TextureProgressBar.value = 100*CurrentHealth/MaxHealth
 	$VBoxContainer/Bar/Count/Background/Number.text = str(CurrentHealth)
+	
+	if CurrentHealth <= 0:
+		get_tree().change_scene_to_file("res://Scenes/Map.tscn")
