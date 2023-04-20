@@ -1,15 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://da8ihj8uxq8e8"]
+[gd_scene load_steps=8 format=3 uid="uid://dmftj3hfw82hc"]
 
-[ext_resource type="Script" path="res://Playspace.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
 [ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="2"]
-[ext_resource type="Script" path="res://DeckDraw.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="5"]
-[ext_resource type="PackedScene" path="res://Enemy.tscn" id="6"]
-[ext_resource type="Script" path="res://DiscardPile.gd" id="7"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy.tscn" id="6"]
+[ext_resource type="Script" path="res://Scripts/DeckDraw.gd" id="6_xjyy5"]
+[ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
 
 [node name="Playspace" type="Node2D"]
-script = ExtResource("1")
+script = ExtResource("1_0opyr")
 
 [node name="CardSlots" type="Node" parent="."]
 
@@ -43,7 +43,7 @@ texture_normal = ExtResource("4")
 texture_pressed = ExtResource("4")
 texture_hover = ExtResource("4")
 texture_disabled = ExtResource("5")
-script = ExtResource("3")
+script = ExtResource("6_xjyy5")
 metadata/_edit_use_anchors_ = true
 
 [node name="Discard" type="Node2D" parent="."]
@@ -58,4 +58,4 @@ texture_normal = ExtResource("4")
 texture_pressed = ExtResource("4")
 texture_hover = ExtResource("4")
 texture_disabled = ExtResource("5")
-script = ExtResource("7")
+script = ExtResource("7_s8njd")

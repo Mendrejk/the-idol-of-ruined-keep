@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="The idol of ruined keep"
-run/main_scene="res://Playspace.tscn"
+run/main_scene="res://Scenes/Playspace.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
