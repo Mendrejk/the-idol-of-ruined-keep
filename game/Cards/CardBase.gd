@@ -1,11 +1,14 @@
 extends MarginContainer
 
 
-# Declare member variables here. Examples:
-onready var CardDatabase = preload("res://Assets/Cards/CardsDatabase.gd")
+@onready var CardDatabase = preload("res://Assets/Cards/CardsDatabase.gd")
+@onready var CardDatabaseInstance = CardDatabase.new()
+
 var Cardname = "Atak_1"
-onready var CardInfo = CardDatabase.DATA[CardDatabase.get(Cardname)]
-onready var CardImg = str("res://Assets/Cards/",CardInfo[0],"/",Cardname,".png")
+
+@onready var CardInfo = CardDatabaseInstance.DATA[CardDatabaseInstance.get(Cardname)]
+@onready var CardImg = str("res://Assets/Cards/",CardInfo[0],"/",Cardname,".png")
+
 var startpos = 0
 var targetpos = 0
 var startrot = 0
@@ -13,26 +16,35 @@ var targetrot = 0
 var t = 0
 var DrawTime = 1
 var OrganiseTime = 0.5
-onready var Orig_scale = rect_scale
+@onready var Orig_scale = scale
+
 enum{
-	InHand
-	InPlay
-	InMouse
-	FocusInHand
-	MoveDrawnCardToHand
-	ReOrganiseHand
+	InHand,
+	InPlay,
+	InMouse,
+	FocusInHand,
+	MoveDrawnCardToHand,
+	ReOrganiseHand,
 	MoveDrawnCardToDiscard
 }
+
 var state = InHand
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(CardInfo)
-	var CardSize = rect_size
+	var CardSize = size
 	$Border.scale *= CardSize/$Border.texture.get_size()
 	$Card.texture = load(CardImg)
-	$Card.scale *= CardSize/$Card.texture.get_size()
+	
+	var ScaledCardSize = CardSize / $Card.texture.get_size()
+	$Card.scale *= ScaledCardSize
+	
 	$CardBack.scale *= CardSize/$CardBack.texture.get_size()
-	$Focus.rect_scale *= CardSize/$Focus.rect_size
+	print($Focus.scale, CardSize, $Focus.size)
+	$Focus.set_stretch_mode(TextureButton.STRETCH_SCALE)
+	$Focus.set_scale( $Focus.scale * CardSize / $Focus.size)
+	print($Focus.scale)
+	
 	var Name = str(CardInfo[1])
 	var Value = str(CardInfo[2])
 	var Cost = str(CardInfo[3])
@@ -79,15 +91,15 @@ func _input(event):
 						var CardSlotEmpty = $'../../'.CardSlotEmpty
 						for i in range(CardSlots.get_child_count()):
 							if CardSlotEmpty[i]:
-								var CardSlotPos = CardSlots.get_child(i).rect_position
-								var CardSlotSize = CardSlots.get_child(i).rect_size
+								var CardSlotPos = CardSlots.get_child(i).position
+								var CardSlotSize = CardSlots.get_child(i).size
 								var mousepos = get_global_mouse_position()
 								if mousepos.x < CardSlotPos.x + CardSlotSize.x && mousepos.x > CardSlotPos.x \
 									&& mousepos.y < CardSlotPos.y + CardSlotSize.y && mousepos.y > CardSlotPos.y:
 										setup = true
 										MovingtoInPlay = true
 										targetpos = CardSlotPos - $'../../'.CardSize/2
-										targetscale = CardSlotSize/rect_size
+										targetscale = CardSlotSize/size
 										state = InPlay
 										Card_Select = true
 										break
@@ -99,8 +111,8 @@ func _input(event):
 					else: 
 						var Enemies = $'../../Enemies'
 						for i in range(Enemies.get_child_count()):
-							var EnemyPos = Enemies.get_child(i).rect_position
-							var EnemySize = Enemies.get_child(i).rect_size
+							var EnemyPos = Enemies.get_child(i).position
+							var EnemySize = Enemies.get_child(i).size
 							var mousepos = get_global_mouse_position()
 							if mousepos.x < EnemyPos.x + EnemySize.x && mousepos.x > EnemyPos.x \
 								&& mousepos.y < EnemyPos.y + EnemySize.y && mousepos.y > EnemyPos.y:
@@ -129,33 +141,33 @@ func _physics_process(delta):
 				if setup:
 					Setup()
 				if t <= 1:
-					rect_position = startpos.linear_interpolate(targetpos, t)
-					rect_rotation = startrot * (1-t) + 0*t
-					rect_scale = startscale*(1-t)+targetscale*t
+					position = startpos.lerp(targetpos, t)
+					rotation = startrot * (1-t) + 0*t
+					scale = startscale*(1-t)+targetscale*t
 					t += delta/float(InMouseTime)
 				else:
-					rect_position = targetpos
-					rect_rotation = 0
-					rect_scale = targetscale
+					position = targetpos
+					rotation = 0
+					scale = targetscale
 					MovingtoInPlay = false
 		InMouse:
 			if setup:
 				Setup()
 			if t <= 1:
-				rect_position = startpos.linear_interpolate(get_global_mouse_position() - $'../../'.CardSize, t)
-				rect_rotation = startrot * (1-t) + 0*t
-				rect_scale = startscale*(1-t)+Orig_scale*t
+				position = startpos.lerp(get_global_mouse_position() - $'../../'.CardSize, t)
+				rotation = startrot * (1-t) + 0*t
+				scale = startscale*(1-t)+Orig_scale*t
 				t += delta/float(InMouseTime)
 			else:
-				rect_position = get_global_mouse_position() - $'../../'.CardSize
-				rect_rotation = 0
+				position = get_global_mouse_position() - $'../../'.CardSize
+				rotation = 0
 		FocusInHand:
 			if setup:
 				Setup()
 			if t <= 1:
-				rect_position = startpos.linear_interpolate(targetpos, t)
-				rect_rotation = startrot * (1-t) + 0*t
-				rect_scale = startscale * (1-t) + Orig_scale*2*t
+				position = startpos.lerp(targetpos, t)
+				rotation = startrot * (1-t) + 0*t
+				scale = startscale * (1-t) + Orig_scale*2*t
 				t += delta/float(ZoomTime)
 				if ReorganiseNeighbours:
 					ReorganiseNeighbours = false
@@ -169,23 +181,23 @@ func _physics_process(delta):
 					if Card_Numb + 2 <= NumberCardsHand:
 						Move_Neighbour_Card(Card_Numb + 2,false,0.25)
 			else:
-				rect_position = targetpos
-				rect_rotation = targetrot
-				rect_scale = Orig_scale*2
+				position = targetpos
+				rotation = targetrot
+				scale = Orig_scale*2
 		MoveDrawnCardToHand:
 			if setup:
 				Setup()
 			if t <= 1:
-				rect_position = startpos.linear_interpolate(targetpos, t)
-				rect_rotation = startrot * (1-t) + targetrot*t
-				rect_scale.x = Orig_scale.x*abs(2*t-1)
+				position = startpos.lerp(targetpos, t)
+				rotation = startrot * (1-t) + targetrot*t
+				scale.x = Orig_scale.x*abs(2*t-1)
 				if $CardBack.visible:
 					if t > 0.5:
 						$CardBack.visible = false
 				t += delta/float(DrawTime)
 			else:
-				rect_position = targetpos
-				rect_rotation = targetrot
+				position = targetpos
+				rotation = targetrot
 				state = InHand
 		ReOrganiseHand:
 			if setup:
@@ -193,9 +205,9 @@ func _physics_process(delta):
 			if t <= 1:
 				if Move_Neighbour_Card_Check == true:
 					Move_Neighbour_Card_Check = false
-				rect_position = startpos.linear_interpolate(targetpos, t)
-				rect_rotation = startrot * (1-t) + targetrot*t
-				rect_scale = startscale * (1-t) + Orig_scale*t
+				position = startpos.lerp(targetpos, t)
+				rotation = startrot * (1-t) + targetrot*t
+				scale = startscale * (1-t) + Orig_scale*t
 				t += delta/float(OrganiseTime)
 				if ReorganiseNeighbours == false:
 					ReorganiseNeighbours = true
@@ -208,9 +220,9 @@ func _physics_process(delta):
 					if Card_Numb + 2 <= NumberCardsHand:
 						Reset_Card(Card_Numb + 2)
 			else:
-				rect_position = targetpos
-				rect_rotation = targetrot
-				rect_scale = Orig_scale
+				position = targetpos
+				rotation = targetrot
+				scale = Orig_scale
 				state = InHand
 		MoveDrawnCardToDiscard:
 			if MovingtoDiscard:
@@ -218,12 +230,12 @@ func _physics_process(delta):
 					Setup()
 					targetpos = DiscardPile
 				if t <= 1:
-					rect_position = startpos.linear_interpolate(targetpos, t)
-					rect_scale = startscale*(1-t)+Orig_scale*t
+					position = startpos.lerp(targetpos, t)
+					scale = startscale*(1-t)+Orig_scale*t
 					t += delta/float(DrawTime)
 				else:
-					rect_position = targetpos
-					rect_scale = Orig_scale
+					position = targetpos
+					scale = Orig_scale
 					MovingtoDiscard = false
 					
 func Move_Neighbour_Card(Card_Numb,Left,Spreadfactor):
@@ -249,9 +261,9 @@ func Reset_Card(Card_Numb):
 	
 
 func Setup():
-	startpos = rect_position
-	startrot = rect_rotation
-	startscale = rect_scale
+	startpos = position
+	startrot = rotation
+	startscale = scale
 	t = 0
 	setup = false
 

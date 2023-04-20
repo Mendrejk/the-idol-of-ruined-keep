@@ -11,7 +11,7 @@ var MaxHealth = 10
 func _ready():
 	pass
 	#$VBoxContainer/ImageContainer/Image.scale *= $VBoxContainer/ImageContainer.rect_min_size/$VBoxContainer/ImageContainer/Image.texture.get_size()
-	$VBoxContainer/Bar/TextureProgress.value = 100
+	$VBoxContainer/Bar/TextureProgressBar.value = 100
 	$VBoxContainer/Bar/Count/Background/Number.text = str(CurrentHealth)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,5 +19,5 @@ func _ready():
 #	pass
 func ChangeHealth(Number):
 	CurrentHealth -= Number
-	$VBoxContainer/Bar/TextureProgress.value = 100*CurrentHealth/MaxHealth
+	$VBoxContainer/Bar/TextureProgressBar.value = 100*CurrentHealth/MaxHealth
 	$VBoxContainer/Bar/Count/Background/Number.text = str(CurrentHealth)
