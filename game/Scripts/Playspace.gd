@@ -36,6 +36,9 @@ func _ready():
 	$Enemies/Enemy.visible = true
 	$Enemies/Enemy.position = ViewportSize * 0.4 + Vector2(200,0)
 	$Enemies/Enemy.scale *= 0.3
+	$Characters/Hero.visible = true
+	$Characters/Hero.position = Vector2(200,250)
+	$Characters/Hero.scale *= 0.3
 	var NewSlot = CardSlot.instantiate()
 	NewSlot.position = ViewportSize * 0.4
 	NewSlot.size = CardSize

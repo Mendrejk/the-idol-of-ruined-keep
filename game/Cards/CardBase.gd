@@ -95,7 +95,7 @@ func _input(event):
 								var CardSlotSize = CardSlots.get_child(i).size
 								var mousepos = get_global_mouse_position()
 								if mousepos.x < CardSlotPos.x + CardSlotSize.x && mousepos.x > CardSlotPos.x \
-									&& mousepos.y < CardSlotPos.y + CardSlotSize.y && mousepos.y > CardSlotPos.y:
+									and mousepos.y < CardSlotPos.y + CardSlotSize.y && mousepos.y > CardSlotPos.y:
 										setup = true
 										MovingtoInPlay = true
 										targetpos = CardSlotPos - $'../../'.CardSize/2
@@ -115,7 +115,7 @@ func _input(event):
 							var EnemySize = Enemies.get_child(i).size
 							var mousepos = get_global_mouse_position()
 							if mousepos.x < EnemyPos.x + EnemySize.x && mousepos.x > EnemyPos.x \
-								&& mousepos.y < EnemyPos.y + EnemySize.y && mousepos.y > EnemyPos.y:
+								and mousepos.y < EnemyPos.y + EnemySize.y && mousepos.y > EnemyPos.y:
 									var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
 									Enemies.get_child(i).ChangeHealth(AttackNo)
 									setup = true
