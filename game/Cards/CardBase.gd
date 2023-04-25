@@ -54,8 +54,8 @@ func _ready():
 	$Bars/SpecialText/Type/CenterContainer/Type.text = Type
 	$Bars/BottomBar/Value/CenterContainer/Value.text = Value
 	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+	original_scale = scale
+
 var setup = true
 var startscale = Vector2()
 var Cardpos = Vector2()
@@ -74,6 +74,9 @@ var MovingtoInPlay = false
 var targetscale = Vector2()
 var DiscardPile = Vector2()
 var MovingtoDiscard = false
+
+var is_in_play_area = false
+var original_scale = null
 
 func _input(event):
 	match state:
@@ -108,6 +111,10 @@ func _input(event):
 							targetpos = Cardpos
 							state = ReOrganiseHand
 							Card_Select = true
+
+							if is_in_play_area:
+								scale = original_scale
+								is_in_play_area = false
 					else: 
 						var Enemies = $'../../Enemies'
 						for i in range(Enemies.get_child_count()):
@@ -130,7 +137,19 @@ func _input(event):
 							MovingtoInPlay = true
 							state = InPlay
 							Card_Select = true
-			
+
+
+func _process(delta):
+	if state == InMouse:
+		var background: Sprite2D = $'../../Background'
+		var play_area_bottom: float = 0.8 * background.texture.get_height() * background.scale.y
+		var is_mouse_in_play_area: bool = get_global_mouse_position().y <= play_area_bottom
+		if is_mouse_in_play_area and not is_in_play_area:
+			scale *= 1.5
+			is_in_play_area = true
+		elif not is_mouse_in_play_area and is_in_play_area:
+			scale = original_scale
+			is_in_play_area = false
 
 func _physics_process(delta):
 	match state:
