@@ -124,7 +124,7 @@ func _input(event):
 							if mousepos.x < EnemyPos.x + EnemySize.x && mousepos.x > EnemyPos.x \
 								and mousepos.y < EnemyPos.y + EnemySize.y && mousepos.y > EnemyPos.y:
 									var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
-									Enemies.get_child(i).ChangeHealth(AttackNo)
+									Enemies.get_child(i).ChangeBanditHealth(AttackNo)
 									setup = true
 									MovingtoDiscard = true
 									state = MoveDrawnCardToDiscard

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnt7ai05mi5vp"]
+[gd_scene load_steps=18 format=3 uid="uid://bnt7ai05mi5vp"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
 [ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="2"]
@@ -8,6 +8,85 @@
 [ext_resource type="PackedScene" uid="uid://efen3udn34wm" path="res://Scenes/Enemy.tscn" id="6"]
 [ext_resource type="Script" path="res://Scripts/DeckDraw.gd" id="6_xjyy5"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybrko"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2il8"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0ybe"]
+bg_color = Color(0, 0, 0, 0.352941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6rb35"]
+bg_color = Color(0, 0.101961, 0.486275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nr3gs"]
+bg_color = Color(0, 0.658824, 0.854902, 1)
+
+[sub_resource type="Animation" id="Animation_2m6ja"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies/Enemy:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Characters/Hero:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_riym1"]
+resource_name = "enemy_damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemies/Enemy:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tursk"]
+resource_name = "player_damaged"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Characters/Hero:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vv45q"]
+_data = {
+"RESET": SubResource("Animation_2m6ja"),
+"enemy_damaged": SubResource("Animation_riym1"),
+"player_damaged": SubResource("Animation_tursk")
+}
 
 [node name="Playspace" type="Node2D"]
 script = ExtResource("1_0opyr")
@@ -65,3 +144,86 @@ texture_pressed = ExtResource("4")
 texture_hover = ExtResource("4")
 texture_disabled = ExtResource("5")
 script = ExtResource("7_s8njd")
+
+[node name="TurnPanel" type="Panel" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 300.0
+offset_right = 140.0
+offset_bottom = 340.0
+grow_vertical = 2
+
+[node name="Turn" type="HBoxContainer" parent="TurnPanel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="EndOfTurn" type="Button" parent="TurnPanel/Turn"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ybrko")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t2il8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t2il8")
+text = "Zakończ turę"
+
+[node name="PlayerPanel" type="Panel" parent="."]
+offset_right = 260.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w0ybe")
+
+[node name="Playerdata" type="HBoxContainer" parent="PlayerPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 48.0
+offset_bottom = 20.0
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="PlayerPanel/Playerdata"]
+layout_mode = 2
+text = "Mana:"
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerPanel/Playerdata"]
+custom_minimum_size = Vector2(200, 25)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_6rb35")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nr3gs")
+max_value = 10.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="PlayerPanel/Playerdata/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vv45q")
+}
+
+[connection signal="pressed" from="TurnPanel/Turn/EndOfTurn" to="." method="_on_end_of_turn_pressed"]

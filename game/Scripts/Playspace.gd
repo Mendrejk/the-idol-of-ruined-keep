@@ -13,6 +13,9 @@ var CardSelected = []
 @onready var Hor_rad = ViewportSize.x * 0.45
 @onready var Ver_rad = ViewportSize.y * 0.3
 
+var Hero = load("res://Scripts/Hero.gd").new()
+var Enemy = load("res://Scripts/Enemy.gd").new()
+
 var angle = 0
 var CardSpread = 0.25
 var NumberCardsHand = -1
@@ -92,3 +95,12 @@ func OrganiseHand():
 			Card.state = ReOrganiseHand
 		elif Card.state == MoveDrawnCardToHand:
 			Card.startpos = (Card.targetpos - (Card.targetpos - Card.position/(1-Card.t)))
+
+func EnemyTurn():
+	Hero.CurrentHealth -= Enemy.Damage
+	$Characters/Hero/VBoxContainer/HealthBar/TextureProgressBar.value = 100*Hero.CurrentHealth/Hero.MaxHealth
+	$Characters/Hero/VBoxContainer/HealthBar/Count/Background/Number.text = str(Hero.CurrentHealth)
+	$AnimationPlayer.play("player_damaged")
+
+func _on_end_of_turn_pressed():
+	EnemyTurn()

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://c6u6ocje3jiwm"]
 
-[ext_resource type="Texture2D" uid="uid://bqdi0n2fkoivi" path="res://assets/GUI/label_HP_bg.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://bi4rq880id21j" path="res://assets/GUI/label_HP.png" id="2"]
-[ext_resource type="FontFile" uid="uid://c4m3xtcrkfymx" path="res://assets/font/Comfortaa-Bold.ttf" id="3"]
-[ext_resource type="Texture2D" uid="uid://cn823brfv3hvj" path="res://assets/GUI/lifebar_bg.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://dinthjw07gtgq" path="res://assets/GUI/lifebar_fill.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://bqdi0n2fkoivi" path="res://Assets/GUI/label_HP_bg.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bi4rq880id21j" path="res://Assets/GUI/label_HP.png" id="2"]
+[ext_resource type="FontFile" uid="uid://c4m3xtcrkfymx" path="res://Assets/Font/Comfortaa-Bold.ttf" id="3"]
+[ext_resource type="Texture2D" uid="uid://cn823brfv3hvj" path="res://Assets/GUI/lifebar_bg.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dinthjw07gtgq" path="res://Assets/GUI/lifebar_fill.png" id="5"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("3")])
