@@ -47,5 +47,8 @@ func _on_mouse_exited():
 
 
 func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+	var is_event_left_click: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed
+	var is_valid_node_to_go_to: bool = parent and parent.is_active
+
+	if is_event_left_click and is_valid_node_to_go_to:
 		get_tree().change_scene_to_file("res://Scenes/Playspace.tscn")
