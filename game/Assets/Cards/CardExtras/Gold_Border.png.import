@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjgi6q1we2max"
-path="res://.godot/imported/Gold_Border.png-e1029145e28f87dc3790373188dd0c9c.ctex"
+path="res://.godot/imported/Gold_Border.png-1640bd2be35d23dc9b0f87aee2393f77.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/CardExtras/Gold_Border.png"
-dest_files=["res://.godot/imported/Gold_Border.png-e1029145e28f87dc3790373188dd0c9c.ctex"]
+source_file="res://assets/cards/CardExtras/Gold_Border.png"
+dest_files=["res://.godot/imported/Gold_Border.png-1640bd2be35d23dc9b0f87aee2393f77.ctex"]
 
 [params]
 

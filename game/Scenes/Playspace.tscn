@@ -1,10 +1,10 @@
 [gd_scene load_steps=18 format=3 uid="uid://bnt7ai05mi5vp"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
-[ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://assets/Background/Background.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://cx27yi85xo00i" path="res://Scenes/Hero.tscn" id="2_66an5"]
-[ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://assets/cards/CardExtras/Back_Texture.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://assets/cards/CardExtras/Gold_Border.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://efen3udn34wm" path="res://Scenes/Enemy.tscn" id="6"]
 [ext_resource type="Script" path="res://Scripts/DeckDraw.gd" id="6_xjyy5"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]

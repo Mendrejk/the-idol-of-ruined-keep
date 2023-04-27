@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dinthjw07gtgq"
-path="res://.godot/imported/lifebar_fill.png-3e08e1535e88ddf80be99d39cf19ac18.ctex"
+path="res://.godot/imported/lifebar_fill.png-11451ae6cd9f38ca127db5b77f2b84f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/GUI/lifebar_fill.png"
-dest_files=["res://.godot/imported/lifebar_fill.png-3e08e1535e88ddf80be99d39cf19ac18.ctex"]
+source_file="res://assets/GUI/lifebar_fill.png"
+dest_files=["res://.godot/imported/lifebar_fill.png-11451ae6cd9f38ca127db5b77f2b84f6.ctex"]
 
 [params]
 

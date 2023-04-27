@@ -90,23 +90,21 @@ func _input(event):
 			if event.is_action_released("leftclick"):
 				if Card_Select == false:
 					if oldstate == FocusInHand:
-						var CardSlots = $'../../CardSlots'
-						var CardSlotEmpty = $'../../'.CardSlotEmpty
-						for i in range(CardSlots.get_child_count()):
-							if CardSlotEmpty[i]:
-								var CardSlotPos = CardSlots.get_child(i).position
-								var CardSlotSize = CardSlots.get_child(i).size
-								var mousepos = get_global_mouse_position()
-								if mousepos.x < CardSlotPos.x + CardSlotSize.x && mousepos.x > CardSlotPos.x \
-									and mousepos.y < CardSlotPos.y + CardSlotSize.y && mousepos.y > CardSlotPos.y:
-										setup = true
-										MovingtoInPlay = true
-										targetpos = CardSlotPos - $'../../'.CardSize/2
-										targetscale = CardSlotSize/size
-										state = InPlay
-										Card_Select = true
-										break
-						if state != InPlay:
+						if is_in_play_area:
+							setup = true
+							MovingtoInPlay = true
+							state = InPlay
+							Card_Select = true
+
+							# TODO: add some enemy select mechanic if there are more enemies
+							var first_enemy = $'../../Enemies'.get_child(0)
+							var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
+							first_enemy.ChangeBanditHealth(AttackNo)
+							setup = true
+							MovingtoDiscard = true
+							state = MoveDrawnCardToDiscard
+							Card_Select = true
+						else:
 							setup = true
 							targetpos = Cardpos
 							state = ReOrganiseHand
@@ -115,28 +113,6 @@ func _input(event):
 							if is_in_play_area:
 								scale = original_scale
 								is_in_play_area = false
-					else: 
-						var Enemies = $'../../Enemies'
-						for i in range(Enemies.get_child_count()):
-							var EnemyPos = Enemies.get_child(i).position
-							var EnemySize = Enemies.get_child(i).size
-							var mousepos = get_global_mouse_position()
-							if mousepos.x < EnemyPos.x + EnemySize.x && mousepos.x > EnemyPos.x \
-								and mousepos.y < EnemyPos.y + EnemySize.y && mousepos.y > EnemyPos.y:
-									var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
-									Enemies.get_child(i).ChangeBanditHealth(AttackNo)
-									setup = true
-									MovingtoDiscard = true
-									state = MoveDrawnCardToDiscard
-									#MovingtoInPlay = true
-									#state = InPlay
-									Card_Select = true
-									break
-						if Card_Select == false:
-							setup = true
-							MovingtoInPlay = true
-							state = InPlay
-							Card_Select = true
 
 
 func _process(delta):

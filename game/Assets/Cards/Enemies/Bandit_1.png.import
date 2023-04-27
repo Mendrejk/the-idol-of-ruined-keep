@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://oqheoovb2das"
-path="res://.godot/imported/Bandit_1.png-850ad5aa23db4171c8b2b921a12fffae.ctex"
+path="res://.godot/imported/Bandit_1.png-d3e375afe2fe4662e587adf178403b30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/Enemies/Bandit_1.png"
-dest_files=["res://.godot/imported/Bandit_1.png-850ad5aa23db4171c8b2b921a12fffae.ctex"]
+source_file="res://assets/cards/Enemies/Bandit_1.png"
+dest_files=["res://.godot/imported/Bandit_1.png-d3e375afe2fe4662e587adf178403b30.ctex"]
 
 [params]
 

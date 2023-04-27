@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djrdo0rl6ghpv"
-path="res://.godot/imported/Atak_3.png-4401c50117b516956a319374a0ed4aec.ctex"
+path="res://.godot/imported/Atak_3.png-d90d8f9f70027d59d0d1e2e8101f179e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/Units/Atak_3.png"
-dest_files=["res://.godot/imported/Atak_3.png-4401c50117b516956a319374a0ed4aec.ctex"]
+source_file="res://assets/cards/units/Atak_3.png"
+dest_files=["res://.godot/imported/Atak_3.png-d90d8f9f70027d59d0d1e2e8101f179e.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkq7s71pimgvx"
-path="res://.godot/imported/background shade.png-8c42f7c153b4ed7a067e5acbb341d6ac.ctex"
+path="res://.godot/imported/background shade.png-4a23450a0ba475a246b3ae586faa586f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Cards/CardExtras/background shade.png"
-dest_files=["res://.godot/imported/background shade.png-8c42f7c153b4ed7a067e5acbb341d6ac.ctex"]
+source_file="res://assets/cards/CardExtras/background shade.png"
+dest_files=["res://.godot/imported/background shade.png-4a23450a0ba475a246b3ae586faa586f.ctex"]
 
 [params]
 
