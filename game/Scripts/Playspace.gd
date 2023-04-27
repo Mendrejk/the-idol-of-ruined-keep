@@ -3,7 +3,6 @@ extends Node2D
 const CardSize = Vector2(125,175)
 const CardBase = preload("res://Cards/CardBase.tscn")
 const PlayerHand = preload("res://Cards/Player_Hand.gd")
-const CardSlot = preload("res://Cards/CardSlot.tscn")
 
 var CardSelected = []
 @onready var DeckSize = PlayerHand.CardList.size()
@@ -33,7 +32,6 @@ enum{
 }
 
 # Called when the node enters the scene tree for the first time.
-var CardSlotEmpty = []
 func _ready():
 	randomize()
 	$Enemies/Enemy.visible = true
@@ -42,11 +40,6 @@ func _ready():
 	$Characters/Hero.visible = true
 	$Characters/Hero.position = Vector2(200,250)
 	$Characters/Hero.scale *= 0.3
-	var NewSlot = CardSlot.instantiate()
-	NewSlot.position = ViewportSize * 0.4
-	NewSlot.size = CardSize
-	$CardSlots.add_child(NewSlot)
-	CardSlotEmpty.append(true)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

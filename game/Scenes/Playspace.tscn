@@ -1,11 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bnt7ai05mi5vp"]
+[gd_scene load_steps=18 format=3 uid="uid://b33y6dft10emc"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
-[ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://assets/Background/Background.png" id="2"]
-[ext_resource type="PackedScene" uid="uid://cx27yi85xo00i" path="res://Scenes/Hero.tscn" id="2_66an5"]
-[ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://assets/cards/CardExtras/Back_Texture.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://assets/cards/CardExtras/Gold_Border.png" id="5"]
-[ext_resource type="PackedScene" uid="uid://efen3udn34wm" path="res://Scenes/Enemy.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://Scenes/Hero.tscn" id="2_66an5"]
+[ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="4_8o1l3"]
+[ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="5_2fhhy"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="6_eclpe"]
 [ext_resource type="Script" path="res://Scripts/DeckDraw.gd" id="6_xjyy5"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
 
@@ -114,7 +114,7 @@ offset_bottom = 554.0
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576, 324)
 scale = Vector2(0.857143, 0.723214)
-texture = ExtResource("2")
+texture = ExtResource("4_8o1l3")
 
 [node name="Deck" type="Node2D" parent="."]
 position = Vector2(997, 194)
@@ -124,10 +124,10 @@ offset_left = -20.0
 offset_top = -27.0
 offset_right = 20.0
 offset_bottom = 33.0
-texture_normal = ExtResource("4")
-texture_pressed = ExtResource("4")
-texture_hover = ExtResource("4")
-texture_disabled = ExtResource("5")
+texture_normal = ExtResource("5_2fhhy")
+texture_pressed = ExtResource("5_2fhhy")
+texture_hover = ExtResource("5_2fhhy")
+texture_disabled = ExtResource("6_eclpe")
 script = ExtResource("6_xjyy5")
 metadata/_edit_use_anchors_ = true
 
@@ -139,10 +139,10 @@ offset_left = -20.0
 offset_top = -23.0
 offset_right = 20.0
 offset_bottom = 33.0
-texture_normal = ExtResource("4")
-texture_pressed = ExtResource("4")
-texture_hover = ExtResource("4")
-texture_disabled = ExtResource("5")
+texture_normal = ExtResource("5_2fhhy")
+texture_pressed = ExtResource("5_2fhhy")
+texture_hover = ExtResource("5_2fhhy")
+texture_disabled = ExtResource("6_eclpe")
 script = ExtResource("7_s8njd")
 
 [node name="TurnPanel" type="Panel" parent="."]

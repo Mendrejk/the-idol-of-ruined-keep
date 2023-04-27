@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6u6ocje3jiwm"]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Texture2D" uid="uid://bqdi0n2fkoivi" path="res://Assets/GUI/label_HP_bg.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://bi4rq880id21j" path="res://Assets/GUI/label_HP.png" id="2"]

@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c53baiqq3v7j0"]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://Cards/CardBase.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://crssqeefrw15t" path="res://assets/cards/CardExtras/cardborder.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://bkq7s71pimgvx" path="res://assets/cards/CardExtras/background shade.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://assets/cards/CardExtras/Back_Texture.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://assets/cards/CardExtras/Gold_Border.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://crssqeefrw15t" path="res://Assets/Cards/CardExtras/cardborder.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bkq7s71pimgvx" path="res://Assets/Cards/CardExtras/background shade.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="5"]
 
 [node name="CardBase" type="MarginContainer"]
 offset_right = 250.0

@@ -36,7 +36,7 @@ func determine_colour():
 	return Color.WHITE_SMOKE
 
 func _on_mouse_entered():
-	if not is_hovered and parent.is_active:
+	if not is_hovered and parent and parent.is_active:
 		is_hovered = true
 		queue_redraw()
 
