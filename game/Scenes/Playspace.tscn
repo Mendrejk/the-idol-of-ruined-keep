@@ -106,10 +106,9 @@ offset_top = 50.0
 offset_right = 950.0
 offset_bottom = 554.0
 
-[node name="Hand" type="Node" parent="." node_paths=PackedStringArray("deck", "hand", "discard")]
+[node name="Hand" type="Node" parent="." node_paths=PackedStringArray("deck", "discard")]
 script = ExtResource("4_gbns5")
 deck = NodePath("../Deck")
-hand = NodePath(".")
 discard = NodePath("../Discard")
 
 [node name="Background" type="Sprite2D" parent="."]

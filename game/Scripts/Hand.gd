@@ -3,7 +3,6 @@ extends Node
 const CardBase   = preload("res://Cards/CardBase.tscn")
 
 @export var deck: TextureButton
-@export var hand: Node
 @export var discard: Node
 
 @onready var ViewportSize: Vector2 = Vector2(get_viewport().size)
@@ -29,12 +28,12 @@ func draw_card(card: Card):
 	new_card.state = Globals.CardState.MoveDrawnCardToHand
 
 	card_number = 0
-	hand.add_child(new_card)
+	add_child(new_card)
 	cards_in_hand_count += 1
 	OrganiseHand()
 
 func OrganiseHand():
-	for Card in hand.get_children():
+	for Card in get_children():
 		angle = PI/2 + CardSpread*(float(cards_in_hand_count)/2 - card_number)
 		OvalAngleVector = Vector2(Hor_rad * cos(angle), - Ver_rad * sin(angle))
 
