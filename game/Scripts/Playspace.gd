@@ -3,10 +3,8 @@ extends Node2D
 @export var deck: TextureButton
 
 const CardBase   = preload("res://Cards/CardBase.tscn")
-const PlayerHand = preload("res://Cards/Player_Hand.gd")
 
 var CardSelected = []
-@onready var DeckSize = PlayerHand.CardList.size()
 
 @onready var ViewportSize = Vector2(get_viewport().size)
 @onready var CenterCardOval = ViewportSize * Vector2(0.5, 1.25)
@@ -56,8 +54,6 @@ func draw_card(card: Card):
 
 	card_number = 0
 	$Cards.add_child(new_card)
-#	PlayerHand.CardList.erase(PlayerHand.CardList[CardSelected])
-	DeckSize -= 1
 	cards_in_hand_count += 1
 	OrganiseHand()
 
