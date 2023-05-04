@@ -2,7 +2,7 @@ extends TextureButton
 
 var cardDatabase: Resource = preload("res://Assets/Cards/CardsDatabase.gd").new()
 
-@export var drawer: Node2D
+@export var drawer: Node
 
 var cards: Array[Card] = _create_populated_deck()
 
