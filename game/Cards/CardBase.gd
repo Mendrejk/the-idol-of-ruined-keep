@@ -1,13 +1,9 @@
 extends MarginContainer
 
 
-@onready var CardDatabase = preload("res://Assets/Cards/CardsDatabase.gd")
-@onready var CardDatabaseInstance = CardDatabase.new()
+var cardDatabase: Resource = preload("res://Assets/Cards/CardsDatabase.gd").new()
 
-var Cardname = "Atak_1"
-
-@onready var CardInfo = CardDatabaseInstance.DATA[CardDatabaseInstance.get(Cardname)]
-@onready var CardImg = str("res://Assets/Cards/",CardInfo[0],"/",Cardname,".png")
+var Cardname: String = "AttackWeak"
 
 var startpos = 0
 var targetpos = 0
@@ -31,29 +27,28 @@ enum{
 var state = InHand
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(CardInfo)
-	var CardSize = size
-	$Border.scale *= CardSize/$Border.texture.get_size()
-	$Card.texture = load(CardImg)
-	
-	var ScaledCardSize = CardSize / $Card.texture.get_size()
-	$Card.scale *= ScaledCardSize
-	
-	$CardBack.scale *= CardSize/$CardBack.texture.get_size()
-	print($Focus.scale, CardSize, $Focus.size)
+	var card                      = cardDatabase.Cards[cardDatabase.get(Cardname)]
+	var card_texture_path: String = str("res://Assets/Cards/", card.path, "/", Cardname, ".png")
+
+	# FIXME: I have no idea why the times two is needed here
+	size = Globals.CardSize * 2
+
+	$Border.scale *= size / $Border.texture.get_size()
+
+	$Card.texture = load(card_texture_path)
+	$Card.scale *= size / $Card.texture.get_size()
+
+	$CardBack.scale *= size / $CardBack.texture.get_size()
+	print($Focus.scale, size, $Focus.size)
 	$Focus.set_stretch_mode(TextureButton.STRETCH_SCALE)
-	$Focus.set_scale( $Focus.scale * CardSize / $Focus.size)
+	$Focus.set_scale( $Focus.scale * size / $Focus.size)
 	print($Focus.scale)
-	
-	var Name = str(CardInfo[1])
-	var Value = str(CardInfo[2])
-	var Cost = str(CardInfo[3])
-	var Type = str(CardInfo[4])
-	$Bars/TopBar/Name/CenterContainer/Name.text = Name
-	$Bars/TopBar/Cost/CenterContainer/Cost.text = Cost
-	$Bars/SpecialText/Type/CenterContainer/Type.text = Type
-	$Bars/BottomBar/Value/CenterContainer/Value.text = Value
-	
+
+	$Bars/TopBar/Name/CenterContainer/Name.text = card.name
+	$Bars/TopBar/Cost/CenterContainer/Cost.text = str(card.cost)
+	$Bars/SpecialText/Type/CenterContainer/Type.text = card.type
+	$Bars/BottomBar/Value/CenterContainer/Value.text = str(card.value)
+
 	original_scale = scale
 
 var setup = true
@@ -62,7 +57,7 @@ var Cardpos = Vector2()
 var ZoomInSize = 2
 var ZoomTime = 0.2
 var ReorganiseNeighbours = true
-var NumberCardsHand = 0
+var cards_in_hand_count = 0
 var Card_Numb = 0
 var NeighbourCard
 var Move_Neighbour_Card_Check = false
@@ -149,12 +144,12 @@ func _physics_process(delta):
 			if setup:
 				Setup()
 			if t <= 1:
-				position = startpos.lerp(get_global_mouse_position() - $'../../'.CardSize, t)
+				position = startpos.lerp(get_global_mouse_position() - Globals.CardSize, t)
 				rotation = startrot * (1-t) + 0*t
 				scale = startscale*(1-t)+Orig_scale*t
 				t += delta/float(InMouseTime)
 			else:
-				position = get_global_mouse_position() - $'../../'.CardSize
+				position = get_global_mouse_position() - Globals.CardSize
 				rotation = 0
 		FocusInHand:
 			if setup:
@@ -166,14 +161,14 @@ func _physics_process(delta):
 				t += delta/float(ZoomTime)
 				if ReorganiseNeighbours:
 					ReorganiseNeighbours = false
-					NumberCardsHand = $'../../'.NumberCardsHand - 1
+					cards_in_hand_count = $'../../'.cards_in_hand_count - 1
 					if Card_Numb - 1 >= 0:
 						Move_Neighbour_Card(Card_Numb - 1,true,1)
 					if Card_Numb - 2 >= 0:
 						Move_Neighbour_Card(Card_Numb - 2,true,0.25)
-					if Card_Numb + 1 <= NumberCardsHand:
+					if Card_Numb + 1 <= cards_in_hand_count:
 						Move_Neighbour_Card(Card_Numb + 1,false,1)
-					if Card_Numb + 2 <= NumberCardsHand:
+					if Card_Numb + 2 <= cards_in_hand_count:
 						Move_Neighbour_Card(Card_Numb + 2,false,0.25)
 			else:
 				position = targetpos
@@ -210,9 +205,9 @@ func _physics_process(delta):
 						Reset_Card(Card_Numb - 1)
 					if Card_Numb - 2 >= 0:
 						Reset_Card(Card_Numb - 2)
-					if Card_Numb + 1 <= NumberCardsHand:
+					if Card_Numb + 1 <= cards_in_hand_count:
 						Reset_Card(Card_Numb + 1)
-					if Card_Numb + 2 <= NumberCardsHand:
+					if Card_Numb + 2 <= cards_in_hand_count:
 						Reset_Card(Card_Numb + 2)
 			else:
 				position = targetpos
@@ -232,7 +227,7 @@ func _physics_process(delta):
 					position = targetpos
 					scale = Orig_scale
 					MovingtoDiscard = false
-					
+
 func Move_Neighbour_Card(Card_Numb,Left,Spreadfactor):
 	NeighbourCard = $'../'.get_child(Card_Numb)
 	if Left:
@@ -253,7 +248,7 @@ func Reset_Card(Card_Numb):
 			NeighbourCard.state = ReOrganiseHand
 			NeighbourCard.targetpos = NeighbourCard.Cardpos
 			NeighbourCard.setup = true
-	
+
 
 func Setup():
 	startpos = position
@@ -267,7 +262,7 @@ func _on_Focus_mouse_entered():
 		InHand, ReOrganiseHand:
 			setup = true
 			targetpos = Cardpos
-			targetpos.y = get_viewport().size.y - $'../../'.CardSize.y*ZoomInSize
+			targetpos.y = get_viewport().size.y - Globals.CardSize.y * ZoomInSize
 			state = FocusInHand
 
 

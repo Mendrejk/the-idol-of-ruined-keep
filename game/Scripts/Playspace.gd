@@ -1,7 +1,8 @@
 extends Node2D
 
-const CardSize = Vector2(125,175)
-const CardBase = preload("res://Cards/CardBase.tscn")
+@export var deck: TextureButton
+
+const CardBase   = preload("res://Cards/CardBase.tscn")
 const PlayerHand = preload("res://Cards/Player_Hand.gd")
 
 var CardSelected = []
@@ -15,11 +16,11 @@ var CardSelected = []
 var Hero = load("res://Scripts/Hero.gd").new()
 var Enemy = load("res://Scripts/Enemy.gd").new()
 
-var angle = 0
-var CardSpread = 0.25
-var NumberCardsHand = -1
-var Card_Numb = 0
-var OwalAngleVector = Vector2()
+var angle               = 0
+var CardSpread          = 0.25
+var cards_in_hand_count = -1
+var card_number         = 0
+var OwalAngleVector     = Vector2()
 
 enum{
 	InHand,
@@ -42,47 +43,35 @@ func _ready():
 	$Characters/Hero.scale *= 0.3
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-@onready var DeckPosition = $Deck.position
-@onready var DiscardPosition = $Discard.position
-func drawcard():
-	angle = PI/2 + CardSpread*(float(NumberCardsHand)/2 - NumberCardsHand)
+@onready var DiscardPosition: Vector2 = $Discard.position
+func draw_card(card: Card):
+	angle = PI / 2 + CardSpread * (float(cards_in_hand_count) / 2 - cards_in_hand_count) + 0.25
+
 	var new_card = CardBase.instantiate()
-	CardSelected = randi() % DeckSize
-	new_card.Cardname = PlayerHand.CardList[CardSelected]
-	#new_card.rect_position = get_global_mouse_position()
-	#OwalAngleVector = Vector2(Hor_rad * cos(angle), - Ver_rad * sin(angle))
-	new_card.position = DeckPosition - CardSize/2
-	new_card.DiscardPile = DiscardPosition - CardSize/2
-	#new_card.targetpos = CenterCardOval + OwalAngleVector - new_card.rect_size/2
-	#new_card.Cardpos = new_card.targetpos
-	#new_card.startrot = 0
-	#new_card.targetrot = (90 - rad2deg(angle))/4
-	new_card.scale *= CardSize/new_card.size
+	new_card.Cardname = card.name
+	new_card.position = deck.position - Globals.CardSize / 2
+	new_card.DiscardPile = DiscardPosition - Globals.CardSize / 2
+	new_card.scale *= Globals.CardSize/new_card.size
 	new_card.state = MoveDrawnCardToHand
-	#new_card.Card_Numb = NumberCardsHand
-	Card_Numb = 0
+
+	card_number = 0
 	$Cards.add_child(new_card)
-	PlayerHand.CardList.erase(PlayerHand.CardList[CardSelected])
-	angle += 0.25
+#	PlayerHand.CardList.erase(PlayerHand.CardList[CardSelected])
 	DeckSize -= 1
-	NumberCardsHand += 1
+	cards_in_hand_count += 1
 	OrganiseHand()
-	return DeckSize
 
 func OrganiseHand():
 	for Card in $Cards.get_children():
-		angle = PI/2 + CardSpread*(float(NumberCardsHand)/2 - Card_Numb)
+		angle = PI/2 + CardSpread*(float(cards_in_hand_count)/2 - card_number)
 		OwalAngleVector = Vector2(Hor_rad * cos(angle), - Ver_rad * sin(angle))
 		
-		Card.targetpos = CenterCardOval + OwalAngleVector - CardSize
+		Card.targetpos = CenterCardOval + OwalAngleVector - Globals.CardSize
 		Card.Cardpos = Card.targetpos
 		Card.startrot = Card.rotation
 		Card.targetrot = (PI / 2 - angle) / 4 
-		Card.Card_Numb = Card_Numb
-		Card_Numb += 1
+		Card.Card_Numb = card_number
+		card_number += 1
 		if Card.state == InHand:
 			Card.setup = true
 			Card.state = ReOrganiseHand

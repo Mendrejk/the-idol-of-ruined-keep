@@ -1,3 +1,13 @@
-enum {Atak_1,Atak_2,Atak_3}
+extends Resource
 
-const DATA = {Atak_1 : ["Units","Atak", 1, 1, "Akcja"],Atak_2 : ["Units","Atak", 2, 2, "Akcja"],Atak_3 : ["Units","Atak", 3, 3, "Akcja"],}
+enum {
+	AttackWeak,
+	AttackNormal,
+	AttackStrong
+}
+
+var Cards: Dictionary = {
+	AttackWeak : Card.new("Units","AttackWeak", 1, 1, "Akcja"),
+	AttackNormal : Card.new("Units","AttackNormal", 2, 2, "Akcja"),
+	AttackStrong : Card.new("Units","AttackStrong", 3, 3, "Akcja")
+}

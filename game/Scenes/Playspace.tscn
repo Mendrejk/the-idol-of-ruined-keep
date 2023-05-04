@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://bjoewvcn45yt1" path="res://Scenes/Hero.tscn" id="2_66an5"]
 [ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="4_8o1l3"]
 [ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="5_2fhhy"]
+[ext_resource type="Script" path="res://Scripts/Deck.gd" id="5_giief"]
 [ext_resource type="PackedScene" uid="uid://cicyrxehfhqe3" path="res://Scenes/Enemy.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="6_eclpe"]
-[ext_resource type="Script" path="res://Scripts/DeckDraw.gd" id="6_xjyy5"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybrko"]
@@ -88,8 +88,9 @@ _data = {
 "player_damaged": SubResource("Animation_tursk")
 }
 
-[node name="Playspace" type="Node2D"]
+[node name="Playspace" type="Node2D" node_paths=PackedStringArray("deck")]
 script = ExtResource("1_0opyr")
+deck = NodePath("Deck")
 
 [node name="Characters" type="Node" parent="."]
 
@@ -114,19 +115,17 @@ position = Vector2(576, 324)
 scale = Vector2(0.857143, 0.723214)
 texture = ExtResource("4_8o1l3")
 
-[node name="Deck" type="Node2D" parent="."]
-position = Vector2(997, 194)
-
-[node name="DeckDraw" type="TextureButton" parent="Deck"]
-offset_left = -20.0
-offset_top = -27.0
-offset_right = 20.0
-offset_bottom = 33.0
+[node name="Deck" type="TextureButton" parent="." node_paths=PackedStringArray("drawer")]
+offset_left = 977.0
+offset_top = 167.0
+offset_right = 1017.0
+offset_bottom = 227.0
 texture_normal = ExtResource("5_2fhhy")
 texture_pressed = ExtResource("5_2fhhy")
 texture_hover = ExtResource("5_2fhhy")
 texture_disabled = ExtResource("6_eclpe")
-script = ExtResource("6_xjyy5")
+script = ExtResource("5_giief")
+drawer = NodePath("..")
 metadata/_edit_use_anchors_ = true
 
 [node name="Discard" type="Node2D" parent="."]
@@ -224,4 +223,5 @@ libraries = {
 "": SubResource("AnimationLibrary_vv45q")
 }
 
+[connection signal="gui_input" from="Deck" to="Deck" method="_on_gui_input"]
 [connection signal="pressed" from="TurnPanel/Turn/EndOfTurn" to="." method="_on_end_of_turn_pressed"]
