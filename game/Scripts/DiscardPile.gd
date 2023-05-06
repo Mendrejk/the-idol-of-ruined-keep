@@ -1,16 +1,12 @@
 extends TextureButton
 
+var discard_pile: Array[Card] = []
+# disabled changes the texture (true = empty)
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	scale *= Globals.CardSize / size
 	disabled = true
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func discard(card: Card):
+	discard_pile.push_back(card)
+	disabled = false

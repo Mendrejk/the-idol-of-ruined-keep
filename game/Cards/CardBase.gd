@@ -1,9 +1,12 @@
 extends MarginContainer
 
-
 var cardDatabase: Resource = preload("res://Assets/Cards/CardsDatabase.gd").new()
 
+var hand = null
+
 var Cardname: String = "AttackWeak"
+
+var card_data: Card
 
 var startpos = 0
 var targetpos = 0
@@ -14,12 +17,13 @@ var DrawTime = 1
 var OrganiseTime = 0.5
 @onready var Orig_scale = scale
 
-
 var state = Globals.CardState.InHand
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var card                      = cardDatabase.Cards[cardDatabase.get(Cardname)]
-	var card_texture_path: String = str("res://Assets/Cards/", card.path, "/", Cardname, ".png")
+	card_data = cardDatabase.Cards[cardDatabase.get(Cardname)]
+	var card_texture_path: String = str("res://Assets/Cards/", card_data.path, "/", Cardname, ".png")
 
 	# FIXME: I have no idea why the times two is needed here
 	size = Globals.CardSize * 2
@@ -30,17 +34,16 @@ func _ready():
 	$Card.scale *= size / $Card.texture.get_size()
 
 	$CardBack.scale *= size / $CardBack.texture.get_size()
-	print($Focus.scale, size, $Focus.size)
 	$Focus.set_stretch_mode(TextureButton.STRETCH_SCALE)
 	$Focus.set_scale( $Focus.scale * size / $Focus.size)
-	print($Focus.scale)
 
-	$Bars/TopBar/Name/CenterContainer/Name.text = card.name
-	$Bars/TopBar/Cost/CenterContainer/Cost.text = str(card.cost)
-	$Bars/SpecialText/Type/CenterContainer/Type.text = card.type
-	$Bars/BottomBar/Value/CenterContainer/Value.text = str(card.value)
+	$Bars/TopBar/Name/CenterContainer/Name.text = card_data.name
+	$Bars/TopBar/Cost/CenterContainer/Cost.text = str(card_data.cost)
+	$Bars/SpecialText/Type/CenterContainer/Type.text = card_data.type
+	$Bars/BottomBar/Value/CenterContainer/Value.text = str(card_data.value)
 
 	original_scale = scale
+
 
 var setup = true
 var startscale = Vector2()
@@ -49,7 +52,7 @@ var ZoomInSize = 2
 var ZoomTime = 0.2
 var ReorganiseNeighbours = true
 var cards_in_hand_count = 0
-var Card_Numb = 0
+var card_index = 0
 var NeighbourCard
 var Move_Neighbour_Card_Check = false
 var Zooming_In = true
@@ -90,6 +93,7 @@ func _input(event):
 							MovingtoDiscard = true
 							state = Globals.CardState.MoveDrawnCardToDiscard
 							Card_Select = true
+							hand.on_card_played(self)
 						else:
 							setup = true
 							targetpos = Cardpos
@@ -152,15 +156,15 @@ func _physics_process(delta):
 				t += delta/float(ZoomTime)
 				if ReorganiseNeighbours:
 					ReorganiseNeighbours = false
-					cards_in_hand_count = $'../'.cards_in_hand_count - 1
-					if Card_Numb - 1 >= 0:
-						Move_Neighbour_Card(Card_Numb - 1,true,1)
-					if Card_Numb - 2 >= 0:
-						Move_Neighbour_Card(Card_Numb - 2,true,0.25)
-					if Card_Numb + 1 <= cards_in_hand_count:
-						Move_Neighbour_Card(Card_Numb + 1,false,1)
-					if Card_Numb + 2 <= cards_in_hand_count:
-						Move_Neighbour_Card(Card_Numb + 2,false,0.25)
+					cards_in_hand_count = hand.card_count - 1
+					if card_index - 1 >= 0:
+						Move_Neighbour_Card(card_index - 1,true,1)
+					if card_index - 2 >= 0:
+						Move_Neighbour_Card(card_index - 2,true,0.25)
+					if card_index + 1 <= cards_in_hand_count:
+						Move_Neighbour_Card(card_index + 1,false,1)
+					if card_index + 2 <= cards_in_hand_count:
+						Move_Neighbour_Card(card_index + 2,false,0.25)
 			else:
 				position = targetpos
 				rotation = targetrot
@@ -192,14 +196,14 @@ func _physics_process(delta):
 				t += delta/float(OrganiseTime)
 				if ReorganiseNeighbours == false:
 					ReorganiseNeighbours = true
-					if Card_Numb - 1 >= 0:
-						Reset_Card(Card_Numb - 1)
-					if Card_Numb - 2 >= 0:
-						Reset_Card(Card_Numb - 2)
-					if Card_Numb + 1 <= cards_in_hand_count:
-						Reset_Card(Card_Numb + 1)
-					if Card_Numb + 2 <= cards_in_hand_count:
-						Reset_Card(Card_Numb + 2)
+					if card_index - 1 >= 0:
+						Reset_Card(card_index - 1)
+					if card_index - 2 >= 0:
+						Reset_Card(card_index - 2)
+					if card_index + 1 <= cards_in_hand_count:
+						Reset_Card(card_index + 1)
+					if card_index + 2 <= cards_in_hand_count:
+						Reset_Card(card_index + 2)
 			else:
 				position = targetpos
 				rotation = targetrot
@@ -219,8 +223,8 @@ func _physics_process(delta):
 					scale = Orig_scale
 					MovingtoDiscard = false
 
-func Move_Neighbour_Card(Card_Numb,Left,Spreadfactor):
-	NeighbourCard = $'../'.get_child(Card_Numb)
+func Move_Neighbour_Card(card_index,Left,Spreadfactor):
+	NeighbourCard = hand.get_child(card_index)
 	if Left:
 		NeighbourCard.targetpos = NeighbourCard.Cardpos - Spreadfactor*Vector2(65,0)
 	else:
@@ -229,12 +233,12 @@ func Move_Neighbour_Card(Card_Numb,Left,Spreadfactor):
 	NeighbourCard.state = Globals.CardState.ReOrganiseHand
 	NeighbourCard.Move_Neighbour_Card_Check = true
 
-func Reset_Card(Card_Numb):
-	NeighbourCard = $'../'.get_child(Card_Numb)
+func Reset_Card(card_index):
+	NeighbourCard = hand.get_child(card_index)
 #	if NeighbourCard.Move_Neighbour_Card_Check == true:
 #		NeighbourCard.Move_Neighbour_Card_Check = false
 	if NeighbourCard.Move_Neighbour_Card_Check == false:
-		NeighbourCard = $'../'.get_child(Card_Numb)
+		NeighbourCard = hand.get_child(card_index)
 		if NeighbourCard.state != Globals.CardState.FocusInHand:
 			NeighbourCard.state = Globals.CardState.ReOrganiseHand
 			NeighbourCard.targetpos = NeighbourCard.Cardpos
