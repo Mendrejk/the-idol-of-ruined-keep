@@ -105,7 +105,7 @@ func _input(event):
 								is_in_play_area = false
 
 
-func _process(delta):
+func _process(_delta):
 	if state == Globals.CardState.InMouse:
 		var background: Sprite2D = $'../../Background'
 		var play_area_bottom: float = 0.8 * background.texture.get_height() * background.scale.y
@@ -116,6 +116,7 @@ func _process(delta):
 		elif not is_mouse_in_play_area and is_in_play_area:
 			scale = original_scale
 			is_in_play_area = false
+
 
 func _physics_process(delta):
 	match state:
@@ -223,8 +224,8 @@ func _physics_process(delta):
 					scale = Orig_scale
 					MovingtoDiscard = false
 
-func Move_Neighbour_Card(card_index,Left,Spreadfactor):
-	NeighbourCard = hand.get_child(card_index)
+func Move_Neighbour_Card(moved_card_index, Left, Spreadfactor):
+	NeighbourCard = hand.get_child(moved_card_index)
 	if Left:
 		NeighbourCard.targetpos = NeighbourCard.Cardpos - Spreadfactor*Vector2(65,0)
 	else:
@@ -233,12 +234,13 @@ func Move_Neighbour_Card(card_index,Left,Spreadfactor):
 	NeighbourCard.state = Globals.CardState.ReOrganiseHand
 	NeighbourCard.Move_Neighbour_Card_Check = true
 
-func Reset_Card(card_index):
-	NeighbourCard = hand.get_child(card_index)
+
+func Reset_Card(reseted_card_index):
+	NeighbourCard = hand.get_child(reseted_card_index)
 #	if NeighbourCard.Move_Neighbour_Card_Check == true:
 #		NeighbourCard.Move_Neighbour_Card_Check = false
 	if NeighbourCard.Move_Neighbour_Card_Check == false:
-		NeighbourCard = hand.get_child(card_index)
+		NeighbourCard = hand.get_child(reseted_card_index)
 		if NeighbourCard.state != Globals.CardState.FocusInHand:
 			NeighbourCard.state = Globals.CardState.ReOrganiseHand
 			NeighbourCard.targetpos = NeighbourCard.Cardpos

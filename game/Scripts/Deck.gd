@@ -2,6 +2,8 @@ extends TextureButton
 
 var cardDatabase: Resource = preload("res://Assets/Cards/CardsDatabase.gd").new()
 
+signal deck_emptied
+
 @export var drawer: Node
 @export var discard_pile: TextureButton
 
@@ -17,11 +19,21 @@ func _on_end_of_turn_pressed():
 
 
 func draw():
+	if cards.is_empty():
+		deck_emptied.emit()
+
 	if not cards.is_empty():
 		drawer.draw_card(cards.pop_back())
-
+		
 		if cards.is_empty():
 			disabled = true
+
+
+func refill(new_cards: Array[Card]):
+	cards.append_array(new_cards)
+
+	if !cards.is_empty():
+		disabled = false
 
 
 func _create_populated_deck() -> Array[Card]:
@@ -30,8 +42,8 @@ func _create_populated_deck() -> Array[Card]:
 	var attack_normal = cardDatabase.Cards[cardDatabase.AttackNormal]
 	var attack_strong = cardDatabase.Cards[cardDatabase.AttackStrong]
 
-	var cards: Array[Card] = [attack_weak, attack_weak, attack_normal, attack_normal, attack_strong, attack_strong]
+	var populated_deck: Array[Card] = [attack_weak, attack_weak, attack_normal, attack_normal, attack_strong, attack_strong]
 	randomize()
-	cards.shuffle()
+	populated_deck.shuffle()
 
-	return cards
+	return populated_deck
