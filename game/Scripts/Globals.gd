@@ -1,6 +1,6 @@
 extends Node
 
-const CardSize: Vector2 = Vector2(125, 175) 
+const CardSize: Vector2 = Vector2(125, 175)
 
 enum CardState {
 	InHand,
@@ -11,3 +11,6 @@ enum CardState {
 	ReOrganiseHand,
 	MoveDrawnCardToDiscard
 }
+
+# Player globals
+var player_starting_hand_size: int = 3

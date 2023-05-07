@@ -17,7 +17,10 @@ func _ready():
 	hero.visible = true
 	hero.position = Vector2(200, 250)
 	hero.scale *= 0.3
-	pass
+
+	# Draw some cards at the start of fight
+	for i in range(Globals.player_starting_hand_size):
+		deck.draw_card()
 
 
 func EnemyTurn():

@@ -15,10 +15,10 @@ func _ready():
 
 
 func _on_end_of_turn_pressed():
-	draw()
+	draw_card()
 
 
-func draw():
+func draw_card():
 	if cards.is_empty():
 		deck_emptied.emit()
 
