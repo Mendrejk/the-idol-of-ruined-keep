@@ -116,7 +116,7 @@ position = Vector2(576, 324)
 scale = Vector2(0.857143, 0.723214)
 texture = ExtResource("4_8o1l3")
 
-[node name="Deck" type="TextureButton" parent="." node_paths=PackedStringArray("drawer")]
+[node name="Deck" type="TextureButton" parent="." node_paths=PackedStringArray("drawer", "discard_pile")]
 offset_left = 977.0
 offset_top = 167.0
 offset_right = 1017.0
@@ -127,6 +127,7 @@ texture_hover = ExtResource("5_2fhhy")
 texture_disabled = ExtResource("6_eclpe")
 script = ExtResource("5_giief")
 drawer = NodePath("../Hand")
+discard_pile = NodePath("../DiscardPile")
 metadata/_edit_use_anchors_ = true
 
 [node name="DiscardPile" type="TextureButton" parent="."]
@@ -223,5 +224,5 @@ libraries = {
 
 [node name="Node" type="Node" parent="."]
 
-[connection signal="gui_input" from="Deck" to="Deck" method="_on_gui_input"]
 [connection signal="pressed" from="TurnPanel/Turn/EndOfTurn" to="." method="_on_end_of_turn_pressed"]
+[connection signal="pressed" from="TurnPanel/Turn/EndOfTurn" to="Deck" method="_on_end_of_turn_pressed"]
