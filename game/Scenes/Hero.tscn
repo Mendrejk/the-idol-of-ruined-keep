@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Hero.gd" id="1_npkjj"]
 [ext_resource type="Texture2D" uid="uid://bw8g7swi8yd1p" path="res://Assets/Cards/Characters/HeroKnight_Idle_0.png" id="2_u7tvr"]
-[ext_resource type="PackedScene" uid="uid://c6u6ocje3jiwm" path="res://Scenes/Bar.tscn" id="3_mhbsj"]
+[ext_resource type="PackedScene" uid="uid://nnjupwbrsxv" path="res://Scenes/Bar.tscn" id="3_mhbsj"]
 
 [node name="Hero" type="MarginContainer"]
 offset_right = 500.0

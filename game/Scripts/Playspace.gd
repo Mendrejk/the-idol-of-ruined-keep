@@ -31,6 +31,8 @@ func EnemyTurn():
 	$Characters/Hero/VBoxContainer/HealthBar/TextureProgressBar.value = 100 * hero.CurrentHealth / hero.MaxHealth
 	$Characters/Hero/VBoxContainer/HealthBar/Count/Background/Number.text = str(hero.CurrentHealth)
 	$AnimationPlayer.play("player_damaged")
+	if hero.CurrentHealth <= 0:
+		get_tree().change_scene_to_file("res://Scenes/Defeat.tscn")
 
 func _on_end_of_turn_pressed():
 	EnemyTurn()

@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://b57pjyxh52l3n"]
+
+[ext_resource type="Script" path="res://Scripts/Defeat.gd" id="1_kkqe0"]
+[ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="2_pb0kb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qubqd"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yh2im"]
+font_size = 64
+font_color = Color(0.701961, 0, 0.14902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6lq06"]
+font_size = 30
+
+[sub_resource type="Theme" id="Theme_wvgvv"]
+default_font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeyuv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oow4u"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmvjt"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdj7t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhe30"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpnt5"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Defeat" type="Node2D"]
+script = ExtResource("1_kkqe0")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.857143, 0.723214)
+texture = ExtResource("2_pb0kb")
+
+[node name="PanelContainer" type="PanelContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -672.0
+offset_top = -448.0
+offset_right = -672.0
+offset_bottom = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qubqd")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/PanelContainer"]
+layout_mode = 2
+
+[node name="TextRow" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 60
+
+[node name="Title" type="Label" parent="Background/PanelContainer/MarginContainer/TextRow"]
+layout_mode = 2
+text = "Koniec gry!"
+label_settings = SubResource("LabelSettings_yh2im")
+horizontal_alignment = 1
+
+[node name="SubtextRow" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer/TextRow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 60
+
+[node name="Subtitle" type="Label" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Niestety dzielny rycerz ginie, a 
+banda oprychów regeneruje siły.
+Spróbuj ponownie!"
+label_settings = SubResource("LabelSettings_6lq06")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="Background/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ButtonsRow" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer/CenterContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_wvgvv")
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="Background/PanelContainer/MarginContainer/CenterContainer/ButtonsRow"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_aeyuv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oow4u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pmvjt")
+text = "Ponów"
+
+[node name="QuitButton" type="Button" parent="Background/PanelContainer/MarginContainer/CenterContainer/ButtonsRow"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_qdj7t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dhe30")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xpnt5")
+text = "Wyjdź"
+
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/CenterContainer/ButtonsRow/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/CenterContainer/ButtonsRow/QuitButton" to="." method="_on_quit_button_pressed"]

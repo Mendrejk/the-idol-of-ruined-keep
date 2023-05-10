@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cicyrxehfhqe3"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Bar.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://nnjupwbrsxv" path="res://Scenes/Bar.tscn" id="1"]
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://oqheoovb2das" path="res://Assets/Cards/Enemies/Bandit_1.png" id="3"]
 
