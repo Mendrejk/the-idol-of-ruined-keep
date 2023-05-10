@@ -16,15 +16,14 @@ var t = 0
 var DrawTime = 1
 var OrganiseTime = 0.5
 @onready var Orig_scale = scale
-
+var mana_max_value = 0
+var mana_value = mana_max_value
 var state = Globals.CardState.InHand
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	card_data = cardDatabase.Cards[cardDatabase.get(Cardname)]
 	var card_texture_path: String = str("res://Assets/Cards/", card_data.path, "/", Cardname, ".png")
-
 	# FIXME: I have no idea why the times two is needed here
 	size = Globals.CardSize * 2
 
@@ -43,7 +42,6 @@ func _ready():
 	$Bars/BottomBar/Value/CenterContainer/Value.text = str(card_data.value)
 
 	original_scale = scale
-
 
 var setup = true
 var startscale = Vector2()
@@ -70,7 +68,7 @@ var original_scale = null
 func _input(event):
 	match state:
 		Globals.CardState.FocusInHand, Globals.CardState.InMouse, Globals.CardState.InPlay:
-			if event.is_action_pressed("leftclick"):
+			if event.is_action_pressed("leftclick") and ($'../../'.mana_value>=int($Bars/TopBar/Cost/CenterContainer/Cost.text.right(2))):
 				if Card_Select:
 					oldstate = state
 					state = Globals.CardState.InMouse
@@ -80,6 +78,9 @@ func _input(event):
 				if Card_Select == false:
 					if oldstate == Globals.CardState.FocusInHand:
 						if is_in_play_area:
+							$'../../'.Decrease_Mana(int($Bars/TopBar/Cost/CenterContainer/Cost.text.right(2)))
+							$'../../PlayerPanel/Playerdata/ProgressBar'.value = $'../../'.mana_value
+							$'../../PlayerPanel/Playerdata/ProgressBar/Label'.text = str($'../../'.mana_value)
 							setup = true
 							MovingtoInPlay = true
 							state = Globals.CardState.InPlay
@@ -261,7 +262,6 @@ func _on_Focus_mouse_entered():
 			targetpos = Cardpos
 			targetpos.y = get_viewport().size.y - Globals.CardSize.y * ZoomInSize
 			state = Globals.CardState.FocusInHand
-
 
 func _on_Focus_mouse_exited():
 	match state:
