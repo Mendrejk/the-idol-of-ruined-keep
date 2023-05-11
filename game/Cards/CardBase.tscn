@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://duwluo50fu5ib"]
+[gd_scene load_steps=7 format=3 uid="uid://duwluo50fu5ib"]
 
 [ext_resource type="Script" path="res://Cards/CardBase.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://crssqeefrw15t" path="res://Assets/Cards/CardExtras/cardborder.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://bkq7s71pimgvx" path="res://Assets/Cards/CardExtras/background shade.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="4"]
+[ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="4_mlq8g"]
 [ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="5"]
 
 [node name="CardBase" type="MarginContainer"]
@@ -47,6 +48,8 @@ layout_mode = 2
 [node name="Name" type="Label" parent="Bars/TopBar/Name/CenterContainer"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_mlq8g")
+theme_override_font_sizes/font_size = 40
 text = "Atak"
 
 [node name="MidGap" type="MarginContainer" parent="Bars/TopBar"]
@@ -65,6 +68,8 @@ layout_mode = 2
 
 [node name="Cost" type="Label" parent="Bars/TopBar/Cost/CenterContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_mlq8g")
+theme_override_font_sizes/font_size = 40
 text = "1"
 
 [node name="RightGap" type="MarginContainer" parent="Bars/TopBar"]
@@ -96,6 +101,8 @@ layout_mode = 2
 [node name="Type" type="Label" parent="Bars/SpecialText/Type/CenterContainer"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_mlq8g")
+theme_override_font_sizes/font_size = 40
 text = "Akcja"
 
 [node name="MidGap" type="MarginContainer" parent="Bars/SpecialText"]
@@ -127,6 +134,8 @@ layout_mode = 2
 [node name="Value" type="Label" parent="Bars/BottomBar/Value/CenterContainer"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_mlq8g")
+theme_override_font_sizes/font_size = 40
 text = "1"
 
 [node name="MidGap" type="MarginContainer" parent="Bars/BottomBar"]

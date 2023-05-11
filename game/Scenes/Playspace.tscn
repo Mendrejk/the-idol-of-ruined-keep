@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b33y6dft10emc"]
+[gd_scene load_steps=20 format=3 uid="uid://b33y6dft10emc"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
 [ext_resource type="PackedScene" uid="uid://bjoewvcn45yt1" path="res://Scenes/Hero.tscn" id="2_66an5"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cicyrxehfhqe3" path="res://Scenes/Enemy.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="6_eclpe"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
+[ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="10_n3ast"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybrko"]
 bg_color = Color(0, 0, 0, 1)
@@ -169,6 +170,8 @@ mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_n3ast")
+theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_ybrko")
 theme_override_styles/hover = SubResource("StyleBoxFlat_t2il8")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_t2il8")
@@ -192,6 +195,8 @@ alignment = 1
 
 [node name="Label" type="Label" parent="PlayerPanel/Playerdata"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_n3ast")
+theme_override_font_sizes/font_size = 40
 text = "Mana:"
 
 [node name="ProgressBar" type="ProgressBar" parent="PlayerPanel/Playerdata"]
@@ -213,6 +218,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_n3ast")
+theme_override_font_sizes/font_size = 30
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
