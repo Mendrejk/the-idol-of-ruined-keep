@@ -17,7 +17,8 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Image" type="Sprite2D" parent="VBoxContainer/ImageContainer"]
-scale = Vector2(7.242, 10)
+position = Vector2(-200, 0)
+scale = Vector2(10, 10)
 texture = ExtResource("2_u7tvr")
 centered = false
 

@@ -13,10 +13,10 @@ func _ready():
 
 	randomize()
 	enemy.visible = true
-	enemy.position = ViewportSize * 0.4 + Vector2(200, 0)
+	enemy.position = ViewportSize * 0.4 + Vector2(200, 90)
 	enemy.scale *= 0.3
 	hero.visible = true
-	hero.position = Vector2(200, 250)
+	hero.position = Vector2(200, 330)
 	hero.scale *= 0.3
 
 	# Draw some cards at the start of fight
