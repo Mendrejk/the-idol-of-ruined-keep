@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4dlguoon0ljm"]
+
+[ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="1_c3gsb"]
+[ext_resource type="Texture2D" uid="uid://dq3dd2o2ik5ji" path="res://Assets/Cards/Enemies/Boss_1.png" id="2_ic1hn"]
+
+[node name="Boss" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Bar" parent="VBoxContainer" instance=ExtResource("1_c3gsb")]
+layout_mode = 2
+
+[node name="ImageContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+
+[node name="Image" type="Sprite2D" parent="VBoxContainer/ImageContainer"]
+texture_filter = 3
+position = Vector2(20, 0)
+scale = Vector2(5, 5)
+texture = ExtResource("2_ic1hn")
+centered = false
+flip_h = true

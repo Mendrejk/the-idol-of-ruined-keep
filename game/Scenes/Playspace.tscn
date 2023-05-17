@@ -1,17 +1,22 @@
-[gd_scene load_steps=22 format=3 uid="uid://do6st57y3qahk"]
+[gd_scene load_steps=27 format=3 uid="uid://do6st57y3qahk"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
 [ext_resource type="PackedScene" uid="uid://bjoewvcn45yt1" path="res://Scenes/Hero.tscn" id="2_66an5"]
 [ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="4_8o1l3"]
 [ext_resource type="Script" path="res://Scripts/Hand.gd" id="4_gbns5"]
 [ext_resource type="PackedScene" uid="uid://ca1crfpjbvmfg" path="res://Scenes/Archer.tscn" id="4_yvg4i"]
-[ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="5_2fhhy"]
 [ext_resource type="Script" path="res://Scripts/Archer.gd" id="5_ds7de"]
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="5_giief"]
 [ext_resource type="PackedScene" uid="uid://0446c6t0gdkj" path="res://Scenes/Bandit.tscn" id="6"]
-[ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="6_eclpe"]
+[ext_resource type="PackedScene" uid="uid://j37b2cwa1a0f" path="res://Scenes/Rogue.tscn" id="6_whbj0"]
+[ext_resource type="Script" path="res://Scripts/Rogue.gd" id="7_d6olg"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
+[ext_resource type="PackedScene" uid="uid://d4dlguoon0ljm" path="res://Scenes/Boss.tscn" id="8_50feg"]
+[ext_resource type="Script" path="res://Scripts/Boss.gd" id="9_7msr0"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="10_n3ast"]
+[ext_resource type="Texture2D" uid="uid://dm5cmsjrbyv4b" path="res://Assets/Cards/CardExtras/CardBack.png" id="12_rin4n"]
+[ext_resource type="Texture2D" uid="uid://ch5fqnkn1t6cx" path="res://Assets/Cards/CardExtras/GoldCardBorder.png" id="13_y6xtf"]
+[ext_resource type="Texture2D" uid="uid://bhr4k32nh8eed" path="res://Assets/Cards/CardExtras/WoddenCardBorder.png" id="15_1yyk6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybrko"]
 bg_color = Color(0, 0, 0, 1)
@@ -99,29 +104,43 @@ script = ExtResource("1_0opyr")
 
 [node name="Hero" parent="Characters" instance=ExtResource("2_66an5")]
 visible = false
+offset_left = 200.0
+offset_top = 308.0
+offset_right = 400.0
+offset_bottom = 512.0
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Bandit" parent="Enemies" instance=ExtResource("6")]
 visible = false
-offset_left = 450.0
-offset_top = 50.0
-offset_right = 950.0
-offset_bottom = 554.0
+offset_left = 712.0
+offset_top = 305.0
+offset_right = 873.0
+offset_bottom = 509.0
 
 [node name="Archer" parent="Enemies" instance=ExtResource("4_yvg4i")]
 visible = false
-offset_right = 500.0
-offset_bottom = 557.0
+offset_left = 700.0
+offset_top = 300.0
+offset_right = 861.0
+offset_bottom = 504.0
 script = ExtResource("5_ds7de")
 
-[node name="Rogue" type="MarginContainer" parent="Enemies"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Rogue" parent="Enemies" instance=ExtResource("6_whbj0")]
+visible = false
+offset_left = 700.0
+offset_top = 250.0
+offset_right = 900.0
+offset_bottom = 504.0
+script = ExtResource("7_d6olg")
 
-[node name="Boss" type="MarginContainer" parent="Enemies"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Boss" parent="Enemies" instance=ExtResource("8_50feg")]
+visible = false
+offset_left = 700.0
+offset_top = 250.0
+offset_right = 900.0
+offset_bottom = 504.0
+script = ExtResource("9_7msr0")
 
 [node name="Hand" type="Node" parent="." node_paths=PackedStringArray("deck", "discard_pile")]
 script = ExtResource("4_gbns5")
@@ -138,10 +157,10 @@ offset_left = 977.0
 offset_top = 167.0
 offset_right = 1017.0
 offset_bottom = 227.0
-texture_normal = ExtResource("5_2fhhy")
-texture_pressed = ExtResource("5_2fhhy")
-texture_hover = ExtResource("5_2fhhy")
-texture_disabled = ExtResource("6_eclpe")
+texture_normal = ExtResource("12_rin4n")
+texture_pressed = ExtResource("12_rin4n")
+texture_hover = ExtResource("12_rin4n")
+texture_disabled = ExtResource("13_y6xtf")
 script = ExtResource("5_giief")
 drawer = NodePath("../Hand")
 discard_pile = NodePath("../DiscardPile")
@@ -152,10 +171,10 @@ offset_left = 977.0
 offset_top = 427.0
 offset_right = 1017.0
 offset_bottom = 483.0
-texture_normal = ExtResource("5_2fhhy")
-texture_pressed = ExtResource("5_2fhhy")
-texture_hover = ExtResource("5_2fhhy")
-texture_disabled = ExtResource("6_eclpe")
+texture_normal = ExtResource("12_rin4n")
+texture_pressed = ExtResource("12_rin4n")
+texture_hover = ExtResource("12_rin4n")
+texture_disabled = ExtResource("15_1yyk6")
 script = ExtResource("7_s8njd")
 
 [node name="TurnPanel" type="Panel" parent="."]

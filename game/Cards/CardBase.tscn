@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://duwluo50fu5ib"]
+[gd_scene load_steps=6 format=3 uid="uid://duwluo50fu5ib"]
 
 [ext_resource type="Script" path="res://Cards/CardBase.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://crssqeefrw15t" path="res://Assets/Cards/CardExtras/cardborder.png" id="2"]
-[ext_resource type="Texture2D" uid="uid://bkq7s71pimgvx" path="res://Assets/Cards/CardExtras/background shade.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://b2c5w6bmu23h0" path="res://Assets/Cards/CardExtras/CardBorder2.png" id="2_tvsxb"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="4_mlq8g"]
-[ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://ch5fqnkn1t6cx" path="res://Assets/Cards/CardExtras/GoldCardBorder.png" id="5_ctjub"]
+[ext_resource type="Texture2D" uid="uid://dm5cmsjrbyv4b" path="res://Assets/Cards/CardExtras/CardBack.png" id="6_u7fa5"]
 
 [node name="CardBase" type="MarginContainer"]
 offset_right = 250.0
@@ -17,7 +16,7 @@ script = ExtResource("1")
 centered = false
 
 [node name="Border" type="Sprite2D" parent="."]
-texture = ExtResource("2")
+texture = ExtResource("2_tvsxb")
 centered = false
 
 [node name="Bars" type="VBoxContainer" parent="."]
@@ -40,7 +39,6 @@ layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Bars/TopBar/Name"]
 layout_mode = 2
-texture = ExtResource("3")
 
 [node name="CenterContainer" type="CenterContainer" parent="Bars/TopBar/Name"]
 layout_mode = 2
@@ -61,7 +59,6 @@ layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Bars/TopBar/Cost"]
 layout_mode = 2
-texture = ExtResource("3")
 
 [node name="CenterContainer" type="CenterContainer" parent="Bars/TopBar/Cost"]
 layout_mode = 2
@@ -93,7 +90,6 @@ layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Bars/SpecialText/Type"]
 layout_mode = 2
-texture = ExtResource("3")
 
 [node name="CenterContainer" type="CenterContainer" parent="Bars/SpecialText/Type"]
 layout_mode = 2
@@ -126,7 +122,6 @@ layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Bars/BottomBar/Value"]
 layout_mode = 2
-texture = ExtResource("3")
 
 [node name="CenterContainer" type="CenterContainer" parent="Bars/BottomBar/Value"]
 layout_mode = 2
@@ -152,10 +147,10 @@ layout_mode = 2
 
 [node name="Focus" type="TextureButton" parent="."]
 layout_mode = 2
-texture_hover = ExtResource("5")
+texture_hover = ExtResource("5_ctjub")
 
 [node name="CardBack" type="Sprite2D" parent="."]
-texture = ExtResource("4")
+texture = ExtResource("6_u7fa5")
 centered = false
 
 [connection signal="mouse_entered" from="Focus" to="." method="_on_Focus_mouse_entered"]

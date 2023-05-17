@@ -16,13 +16,17 @@ func _ready():
 	elif Globals.level_number == 1:
 		var global_enemy = $Enemies.get_child(1)
 		enemy = global_enemy
+	elif Globals.level_number == 2:
+		var global_enemy = $Enemies.get_child(2)
+		enemy = global_enemy
+	elif Globals.level_number == 3:
+		var global_enemy = $Enemies.get_child(3)
+		enemy = global_enemy
+	elif Globals.level_number == 4:
+		get_tree().change_scene_to_file("res://Scenes/Defeat.tscn")
 	randomize()
 	enemy.visible = true
-	enemy.position = ViewportSize * 0.4 + Vector2(200, 90)
-	enemy.scale *= 0.3
 	hero.visible = true
-	hero.position = Vector2(200, 330)
-	hero.scale *= 0.3
 
 	# Draw some cards at the start of fight
 	for i in range(Globals.player_starting_hand_size):
@@ -36,8 +40,8 @@ func _ready():
 
 func EnemyTurn():
 	hero.CurrentHealth -= enemy.Damage
-	$Characters/Hero/VBoxContainer/HealthBar/TextureProgressBar.value = 100 * hero.CurrentHealth / hero.MaxHealth
-	$Characters/Hero/VBoxContainer/HealthBar/Count/Number.text = str(hero.CurrentHealth)
+	$Characters/Hero/VBoxContainer/Bar/TextureProgressBar.value = 100 * hero.CurrentHealth / hero.MaxHealth
+	$Characters/Hero/VBoxContainer/Bar/Count/Number.text = str(hero.CurrentHealth)
 	$AnimationPlayer.play("player_damaged")
 	if hero.CurrentHealth <= 0:
 		get_tree().change_scene_to_file("res://Scenes/Defeat.tscn")

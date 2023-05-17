@@ -1,27 +1,28 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjoewvcn45yt1"]
 
 [ext_resource type="Script" path="res://Scripts/Hero.gd" id="1_npkjj"]
-[ext_resource type="Texture2D" uid="uid://bw8g7swi8yd1p" path="res://Assets/Cards/Characters/HeroKnight_Idle_0.png" id="2_u7tvr"]
-[ext_resource type="PackedScene" uid="uid://nnjupwbrsxv" path="res://Scenes/Bar.tscn" id="3_mhbsj"]
+[ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="2_l7nbx"]
+[ext_resource type="Texture2D" uid="uid://cc3y71ea6x142" path="res://Assets/Cards/Characters/Hero.png" id="3_cvkl8"]
 
 [node name="Hero" type="MarginContainer"]
 texture_filter = 1
-offset_right = 500.0
-offset_bottom = 500.0
+offset_right = 200.0
+offset_bottom = 220.0
 script = ExtResource("1_npkjj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(500, 500)
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="Bar" parent="VBoxContainer" instance=ExtResource("2_l7nbx")]
 layout_mode = 2
 
 [node name="ImageContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 
 [node name="Image" type="Sprite2D" parent="VBoxContainer/ImageContainer"]
-position = Vector2(-200, 0)
-scale = Vector2(10, 10)
-texture = ExtResource("2_u7tvr")
+position = Vector2(30, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("3_cvkl8")
 centered = false
-
-[node name="HealthBar" parent="VBoxContainer" instance=ExtResource("3_mhbsj")]
-layout_mode = 2
