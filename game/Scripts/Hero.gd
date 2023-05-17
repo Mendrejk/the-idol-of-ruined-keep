@@ -9,7 +9,7 @@ func _ready():
 	pass
 	#$VBoxContainer/ImageContainer/Image.scale *= $VBoxContainer/ImageContainer.rect_min_size/$VBoxContainer/ImageContainer/Image.texture.get_size()
 	$VBoxContainer/HealthBar/TextureProgressBar.value = 100
-	$VBoxContainer/HealthBar/Count/Background/Number.text = str(CurrentHealth)
+	$VBoxContainer/HealthBar/Count/Number.text = str(CurrentHealth)
 
 #func ChangeHeroHealth(Number):
 #	CurrentHealth -= Number

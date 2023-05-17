@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://nnjupwbrsxv" path="res://Scenes/Bar.tscn" id="3_mhbsj"]
 
 [node name="Hero" type="MarginContainer"]
+texture_filter = 1
 offset_right = 500.0
 offset_bottom = 500.0
 script = ExtResource("1_npkjj")

@@ -8,6 +8,8 @@ var Cardname: String = "AttackWeak"
 
 var card_data: Card
 
+#@onready var enemy = $Enemies/Archer
+
 var startpos = 0
 var targetpos = 0
 var startrot = 0
@@ -65,6 +67,8 @@ var MovingtoDiscard = false
 var is_in_play_area = false
 var original_scale = null
 
+var enemy
+
 func _input(event):
 	match state:
 		Globals.CardState.FocusInHand, Globals.CardState.InMouse, Globals.CardState.InPlay:
@@ -87,9 +91,16 @@ func _input(event):
 							Card_Select = true
 
 							# TODO: add some enemy select mechanic if there are more enemies
-							var first_enemy = $'../../Enemies'.get_child(0)
+							#var first_enemy = $'../../Enemies'.get_child(0)
+							if Globals.level_number == 0:
+								var global_enemy = $'../../Enemies'.get_child(0)
+								enemy = global_enemy
+							elif Globals.level_number == 1:
+								var global_enemy = $'../../Enemies'.get_child(1)
+								enemy = global_enemy
 							var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
-							first_enemy.ChangeBanditHealth(AttackNo)
+							#first_enemy.ChangeBanditHealth(AttackNo)
+							enemy.ChangeEnemyHealth(AttackNo)
 							setup = true
 							MovingtoDiscard = true
 							state = Globals.CardState.MoveDrawnCardToDiscard

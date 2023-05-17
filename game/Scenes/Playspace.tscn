@@ -1,12 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://b33y6dft10emc"]
+[gd_scene load_steps=22 format=3 uid="uid://do6st57y3qahk"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
 [ext_resource type="PackedScene" uid="uid://bjoewvcn45yt1" path="res://Scenes/Hero.tscn" id="2_66an5"]
 [ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="4_8o1l3"]
 [ext_resource type="Script" path="res://Scripts/Hand.gd" id="4_gbns5"]
+[ext_resource type="PackedScene" uid="uid://ca1crfpjbvmfg" path="res://Scenes/Archer.tscn" id="4_yvg4i"]
 [ext_resource type="Texture2D" uid="uid://cxn62amqbv3pm" path="res://Assets/Cards/CardExtras/Back_Texture.png" id="5_2fhhy"]
+[ext_resource type="Script" path="res://Scripts/Archer.gd" id="5_ds7de"]
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="5_giief"]
-[ext_resource type="PackedScene" uid="uid://cicyrxehfhqe3" path="res://Scenes/Enemy.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://0446c6t0gdkj" path="res://Scenes/Bandit.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://cjgi6q1we2max" path="res://Assets/Cards/CardExtras/Gold_Border.png" id="6_eclpe"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="10_n3ast"]
@@ -31,7 +33,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Enemies/Enemy:modulate")
+tracks/0/path = NodePath("Enemies/Bandit:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -58,7 +60,7 @@ resource_name = "enemy_damaged"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Enemies/Enemy:modulate")
+tracks/0/path = NodePath("Enemies/Bandit:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -100,12 +102,26 @@ visible = false
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource("6")]
+[node name="Bandit" parent="Enemies" instance=ExtResource("6")]
 visible = false
 offset_left = 450.0
 offset_top = 50.0
 offset_right = 950.0
 offset_bottom = 554.0
+
+[node name="Archer" parent="Enemies" instance=ExtResource("4_yvg4i")]
+visible = false
+offset_right = 500.0
+offset_bottom = 557.0
+script = ExtResource("5_ds7de")
+
+[node name="Rogue" type="MarginContainer" parent="Enemies"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Boss" type="MarginContainer" parent="Enemies"]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Hand" type="Node" parent="." node_paths=PackedStringArray("deck", "discard_pile")]
 script = ExtResource("4_gbns5")
@@ -178,7 +194,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_t2il8")
 text = "Zakończ turę"
 
 [node name="PlayerPanel" type="Panel" parent="."]
-offset_right = 260.0
+offset_right = 300.0
 offset_bottom = 50.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_w0ybe")
 
@@ -188,7 +204,7 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -20.0
-offset_right = 48.0
+offset_right = 274.0
 offset_bottom = 20.0
 grow_vertical = 2
 alignment = 1
@@ -202,7 +218,7 @@ text = "Mana:"
 [node name="ProgressBar" type="ProgressBar" parent="PlayerPanel/Playerdata"]
 custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_6rb35")
 theme_override_styles/fill = SubResource("StyleBoxFlat_nr3gs")
@@ -213,9 +229,15 @@ show_percentage = false
 
 [node name="Label" type="Label" parent="PlayerPanel/Playerdata/ProgressBar"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -13.5
+offset_right = 11.0
+offset_bottom = 13.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("10_n3ast")

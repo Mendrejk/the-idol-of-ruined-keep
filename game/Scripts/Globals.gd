@@ -14,3 +14,5 @@ enum CardState {
 
 # Player globals
 var player_starting_hand_size: int = 3
+
+var level_number = 0

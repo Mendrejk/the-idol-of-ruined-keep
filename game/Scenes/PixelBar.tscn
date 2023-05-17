@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://qt6kdy1f23le"]
+
+[ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="1_5h2s2"]
+[ext_resource type="Texture2D" uid="uid://dldcds5osycdk" path="res://Assets/GUI/greenbar (3).png" id="2_71313"]
+[ext_resource type="Texture2D" uid="uid://ctvvgyfw5pi3i" path="res://Assets/GUI/greenbar (1).png" id="3_risx2"]
+
+[node name="Bar" type="HBoxContainer"]
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="Count" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/margin_left = 0
+
+[node name="Number" type="Label" parent="Count"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_5h2s2")
+theme_override_font_sizes/font_size = 30
+text = "10"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+value = 50.0
+stretch_margin_right = 300
+stretch_margin_bottom = 25
+texture_under = ExtResource("2_71313")
+texture_progress = ExtResource("3_risx2")

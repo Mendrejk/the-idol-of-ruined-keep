@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca1crfpjbvmfg"]
+
+[ext_resource type="PackedScene" uid="uid://nnjupwbrsxv" path="res://Scenes/Bar.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://2e45jy3rjwp1" path="res://Assets/Cards/Enemies/Archer_1.png" id="2_6xujf"]
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Bar" parent="VBoxContainer" instance=ExtResource("1")]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="ImageContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 10
+
+[node name="Image" type="Sprite2D" parent="VBoxContainer/ImageContainer"]
+texture_filter = 3
+position = Vector2(120, 0)
+scale = Vector2(9, 9)
+texture = ExtResource("2_6xujf")
+centered = false
+flip_h = true
