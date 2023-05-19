@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://j37b2cwa1a0f"]
+[gd_scene load_steps=3 format=3 uid="uid://j37b2cwa1a0f"]
 
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="1_ios45"]
+[ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="2_nn0b3"]
 
 [node name="Rogue" type="MarginContainer"]
 offset_right = 200.0
@@ -8,6 +9,17 @@ offset_bottom = 254.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+
+[node name="TopContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/TopContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nn0b3")
+theme_override_font_sizes/font_size = 30
+text = "Skrytobójca
+"
+horizontal_alignment = 1
 
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("1_ios45")]
 layout_mode = 2

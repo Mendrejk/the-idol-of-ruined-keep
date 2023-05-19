@@ -27,22 +27,17 @@ func _ready():
 	randomize()
 	enemy.visible = true
 	hero.visible = true
-
 	# Draw some cards at the start of fight
 	for i in range(Globals.player_starting_hand_size):
 		deck.draw_card()
 
 	Increase_Max_Mana()
-	
-	if Globals.level_number == 0:
-		print(Globals.level_number)
+
 
 
 func EnemyTurn():
-	hero.CurrentHealth -= enemy.Damage
-	$Characters/Hero/VBoxContainer/Bar/TextureProgressBar.value = 100 * hero.CurrentHealth / hero.MaxHealth
-	$Characters/Hero/VBoxContainer/Bar/Count/Number.text = str(hero.CurrentHealth)
-	$AnimationPlayer.play("player_damaged")
+	enemy.EnemyAttack()
+	hero.ChangeHeroHealth(enemy.Damage)
 	if hero.CurrentHealth <= 0:
 		get_tree().change_scene_to_file("res://Scenes/Defeat.tscn")
 

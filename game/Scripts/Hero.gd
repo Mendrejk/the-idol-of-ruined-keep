@@ -10,9 +10,18 @@ func _ready():
 	#$VBoxContainer/ImageContainer/Image.scale *= $VBoxContainer/ImageContainer.rect_min_size/$VBoxContainer/ImageContainer/Image.texture.get_size()
 	$VBoxContainer/Bar/TextureProgressBar.value = 100
 	$VBoxContainer/Bar/Count/Number.text = str(CurrentHealth)
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
 
-#func ChangeHeroHealth(Number):
-#	CurrentHealth -= Number
-#	$VBoxContainer/HealthBar/TextureProgressBar.value = 100*CurrentHealth/MaxHealth
-#	$VBoxContainer/HealthBar/Count/Background/Number.text = str(CurrentHealth)
-	
+func ChangeHeroHealth(Number):
+	CurrentHealth -= Number
+	$VBoxContainer/Bar/TextureProgressBar.value = 100*CurrentHealth/MaxHealth
+	$VBoxContainer/Bar/Count/Number.text = str(CurrentHealth)
+	$'../../AnimationPlayer'.play("player_damaged")
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("hurt")
+	await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
+
+func HeroAttack():
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("attack")
+	await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")

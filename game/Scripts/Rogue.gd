@@ -18,6 +18,15 @@ func ChangeEnemyHealth(Number):
 	$VBoxContainer/Bar/TextureProgressBar.value = 100*CurrentHealth/MaxHealth
 	$VBoxContainer/Bar/Count/Number.text = str(CurrentHealth)
 	$'../../AnimationPlayer'.play("enemy_damaged")
-	
+	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("hurt")
+	#await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
+	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
+
 	if CurrentHealth <= 0:
 		get_tree().change_scene_to_file("res://Scenes/Map.tscn")
+
+func EnemyAttack():
+	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("attack")
+	#await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
+	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
+	print("odkomentować w rogue.gd")

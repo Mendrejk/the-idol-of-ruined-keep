@@ -1,7 +1,106 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4dlguoon0ljm"]
+[gd_scene load_steps=25 format=3 uid="uid://d4dlguoon0ljm"]
 
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="1_c3gsb"]
 [ext_resource type="Texture2D" uid="uid://dq3dd2o2ik5ji" path="res://Assets/Cards/Enemies/Boss_1.png" id="2_ic1hn"]
+[ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="3_1j05w"]
+[ext_resource type="Texture2D" uid="uid://dachfuk76wqdg" path="res://Assets/Cards/Enemies/Boss/Idle/Idle1.png" id="4_dx7r1"]
+[ext_resource type="Texture2D" uid="uid://cpm8dbh2klfao" path="res://Assets/Cards/Enemies/Boss/Attack/Attack1.png" id="4_pa60p"]
+[ext_resource type="Texture2D" uid="uid://daifkl2xw7fob" path="res://Assets/Cards/Enemies/Boss/Attack/Attack2.png" id="5_f76q1"]
+[ext_resource type="Texture2D" uid="uid://46ht5mlg7ije" path="res://Assets/Cards/Enemies/Boss/Idle/Idle2.png" id="5_mewhb"]
+[ext_resource type="Texture2D" uid="uid://c2rvfyiuws7e6" path="res://Assets/Cards/Enemies/Boss/Attack/Attack4.png" id="6_cy6hl"]
+[ext_resource type="Texture2D" uid="uid://dxer2svrh034h" path="res://Assets/Cards/Enemies/Boss/Idle/Idle4.png" id="6_yjpmi"]
+[ext_resource type="Texture2D" uid="uid://d2o3bqf1fiush" path="res://Assets/Cards/Enemies/Boss/Attack/Attack5.png" id="7_robt8"]
+[ext_resource type="Texture2D" uid="uid://cayxcasxqim1e" path="res://Assets/Cards/Enemies/Boss/Idle/Idle3.png" id="7_vioql"]
+[ext_resource type="Texture2D" uid="uid://c737ose0ylevr" path="res://Assets/Cards/Enemies/Boss/Attack/Attack6.png" id="8_oii0h"]
+[ext_resource type="Texture2D" uid="uid://daqoceos0ny4r" path="res://Assets/Cards/Enemies/Boss/Idle/Idle5.png" id="8_on1gb"]
+[ext_resource type="Texture2D" uid="uid://bk47ycg10dkfh" path="res://Assets/Cards/Enemies/Boss/Idle/Idle6.png" id="9_c3lxr"]
+[ext_resource type="Texture2D" uid="uid://bffvytqal2khh" path="res://Assets/Cards/Enemies/Boss/Attack/Attack7.png" id="9_g0b1e"]
+[ext_resource type="Texture2D" uid="uid://bkyw8j1vfsyqv" path="res://Assets/Cards/Enemies/Boss/Idle/Idle7.png" id="10_cibq7"]
+[ext_resource type="Texture2D" uid="uid://di3mp3qg64n43" path="res://Assets/Cards/Enemies/Boss/Attack/Attack3.png" id="10_kcwas"]
+[ext_resource type="Texture2D" uid="uid://dh8e8cpfmiqxe" path="res://Assets/Cards/Enemies/Boss/Idle/Idle9.png" id="11_n5qf2"]
+[ext_resource type="Texture2D" uid="uid://dl5noackittxn" path="res://Assets/Cards/Enemies/Boss/Hurt/Hit1.png" id="11_orlw1"]
+[ext_resource type="Texture2D" uid="uid://4nkxe7rmkmng" path="res://Assets/Cards/Enemies/Boss/Hurt/Hit3.png" id="12_bq04o"]
+[ext_resource type="Texture2D" uid="uid://2idaq38e65x8" path="res://Assets/Cards/Enemies/Boss/Idle/Idle10.png" id="12_leypj"]
+[ext_resource type="Texture2D" uid="uid://cx0sbldike7np" path="res://Assets/Cards/Enemies/Boss/Hurt/Hit2.png" id="13_eo0ie"]
+[ext_resource type="Texture2D" uid="uid://boo63i84lrwnv" path="res://Assets/Cards/Enemies/Boss/Idle/Idle8.png" id="13_ewisl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bcduo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_pa60p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f76q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cy6hl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_robt8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_oii0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_g0b1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_kcwas")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_orlw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_bq04o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_eo0ie")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_dx7r1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mewhb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yjpmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vioql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_on1gb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c3lxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cibq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_n5qf2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_leypj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ewisl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [node name="Boss" type="MarginContainer"]
 offset_right = 40.0
@@ -10,19 +109,38 @@ offset_bottom = 40.0
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="TopContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/TopContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_1j05w")
+theme_override_font_sizes/font_size = 30
+text = "Herszt Bandytów"
+horizontal_alignment = 1
+
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("1_c3gsb")]
 layout_mode = 2
 
 [node name="ImageContainer" type="MarginContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(200, 200)
+custom_minimum_size = Vector2(200, 220)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 10
 
 [node name="Image" type="Sprite2D" parent="VBoxContainer/ImageContainer"]
+visible = false
 texture_filter = 3
 position = Vector2(20, 0)
 scale = Vector2(5, 5)
 texture = ExtResource("2_ic1hn")
 centered = false
+flip_h = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/ImageContainer"]
+texture_filter = 1
+position = Vector2(0, -20)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_bcduo")
+animation = &"idle"
 flip_h = true

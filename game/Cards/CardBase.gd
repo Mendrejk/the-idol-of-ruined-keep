@@ -89,7 +89,7 @@ func _input(event):
 							MovingtoInPlay = true
 							state = Globals.CardState.InPlay
 							Card_Select = true
-
+							$'../../Characters/Hero'.HeroAttack()
 							# TODO: add some enemy select mechanic if there are more enemies
 							#var first_enemy = $'../../Enemies'.get_child(0)
 							if Globals.level_number == 0:

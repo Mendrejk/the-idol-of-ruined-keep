@@ -1,8 +1,94 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjoewvcn45yt1"]
+[gd_scene load_steps=22 format=3 uid="uid://bjoewvcn45yt1"]
 
 [ext_resource type="Script" path="res://Scripts/Hero.gd" id="1_npkjj"]
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="2_l7nbx"]
 [ext_resource type="Texture2D" uid="uid://cc3y71ea6x142" path="res://Assets/Cards/Characters/Hero.png" id="3_cvkl8"]
+[ext_resource type="Texture2D" uid="uid://dgevhwaihb31d" path="res://Assets/Cards/Characters/Hero/Attack/HeroKnight_Attack1_0.png" id="4_6v484"]
+[ext_resource type="Texture2D" uid="uid://7jnehlsnuxjn" path="res://Assets/Cards/Characters/Hero/Hurt/HeroKnight_Hurt_0.png" id="4_mlecp"]
+[ext_resource type="Texture2D" uid="uid://bjpy4ac03i11y" path="res://Assets/Cards/Characters/Hero/Attack/HeroKnight_Attack1_1.png" id="5_eqkvg"]
+[ext_resource type="Texture2D" uid="uid://d8u1kliv6moe" path="res://Assets/Cards/Characters/Hero/Hurt/HeroKnight_Hurt_1.png" id="5_miu24"]
+[ext_resource type="Texture2D" uid="uid://b178vg8tra8iv" path="res://Assets/Cards/Characters/Hero/Hurt/HeroKnight_Hurt_2.png" id="6_7d7bk"]
+[ext_resource type="Texture2D" uid="uid://cxsy0bp8bqudp" path="res://Assets/Cards/Characters/Hero/Attack/HeroKnight_Attack1_2.png" id="6_wbwfo"]
+[ext_resource type="Texture2D" uid="uid://ljf1atu6ul7r" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_0.png" id="7_edxhu"]
+[ext_resource type="Texture2D" uid="uid://b1n3jfccpr8ms" path="res://Assets/Cards/Characters/Hero/Attack/HeroKnight_Attack1_3.png" id="7_wn4bp"]
+[ext_resource type="Texture2D" uid="uid://d1i5pcmc88lyr" path="res://Assets/Cards/Characters/Hero/Attack/HeroKnight_Attack1_4.png" id="8_m3i71"]
+[ext_resource type="Texture2D" uid="uid://ckvnhhbsrjfgt" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_1.png" id="8_p25p4"]
+[ext_resource type="Texture2D" uid="uid://dy37o5wu0yj1t" path="res://Assets/Cards/Characters/Hero/Attack/HeroKnight_Attack1_5.png" id="9_3gf1p"]
+[ext_resource type="Texture2D" uid="uid://dgwpktpdkopb6" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_2.png" id="9_5o6ai"]
+[ext_resource type="Texture2D" uid="uid://b4xi5boq6gs1j" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_3.png" id="10_0qduq"]
+[ext_resource type="Texture2D" uid="uid://dtviwrs5tpbou" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_4.png" id="11_aokvt"]
+[ext_resource type="Texture2D" uid="uid://wkvemw1r4aq0" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_5.png" id="12_xwg1w"]
+[ext_resource type="Texture2D" uid="uid://ddgdhqh2v0ye6" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_6.png" id="13_dab08"]
+[ext_resource type="Texture2D" uid="uid://dkamutsandbgh" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_7.png" id="14_5imto"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2r8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6v484")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eqkvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wbwfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wn4bp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m3i71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3gf1p")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mlecp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_miu24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7d7bk")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_edxhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p25p4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5o6ai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0qduq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_aokvt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xwg1w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_dab08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5imto")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
 
 [node name="Hero" type="MarginContainer"]
 texture_filter = 1
@@ -22,7 +108,15 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 
 [node name="Image" type="Sprite2D" parent="VBoxContainer/ImageContainer"]
-position = Vector2(30, 0)
+visible = false
 scale = Vector2(3, 3)
 texture = ExtResource("3_cvkl8")
+centered = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/ImageContainer"]
+texture_filter = 1
+position = Vector2(-80, -30)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_i2r8v")
+animation = &"idle"
 centered = false

@@ -6,10 +6,10 @@
 
 [node name="Bar" type="HBoxContainer"]
 offset_right = 200.0
-offset_bottom = 100.0
+offset_bottom = 30.0
 
 [node name="Count" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
