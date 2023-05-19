@@ -83,8 +83,8 @@ func _input(event):
 					if oldstate == Globals.CardState.FocusInHand:
 						if is_in_play_area:
 							$'../../'.Decrease_Mana(int($Bars/TopBar/Cost/CenterContainer/Cost.text.right(2)))
-							$'../../PlayerPanel/Playerdata/ProgressBar'.value = $'../../'.mana_value
-							$'../../PlayerPanel/Playerdata/ProgressBar/Label'.text = str($'../../'.mana_value)
+							$'../../PlayerPanel/Playerdata/TextureProgressBar'.value = $'../../'.mana_value
+							$'../../PlayerPanel/Playerdata/TextureProgressBar/Mana'.text = str($'../../'.mana_value)
 							setup = true
 							MovingtoInPlay = true
 							state = Globals.CardState.InPlay

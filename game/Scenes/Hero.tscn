@@ -102,6 +102,7 @@ layout_mode = 2
 
 [node name="Bar" parent="VBoxContainer" instance=ExtResource("2_l7nbx")]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="ImageContainer" type="MarginContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
@@ -115,7 +116,7 @@ centered = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/ImageContainer"]
 texture_filter = 1
-position = Vector2(-80, -30)
+position = Vector2(-40, -30)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_i2r8v")
 animation = &"idle"

@@ -63,5 +63,6 @@ func Decrease_Mana(value):
 		mana_value -= value;
 
 func Load_Mana():
-	$PlayerPanel/Playerdata/ProgressBar.value = mana_value
-	$PlayerPanel/Playerdata/ProgressBar/Label.text = str(mana_value)
+	$PlayerPanel/Playerdata/TextureProgressBar.value = mana_value
+	$PlayerPanel/Playerdata/TextureProgressBar/Mana.text = str(mana_value)
+	$PlayerPanel/Playerdata/TextureProgressBar/MaxMana.text = str(mana_value)
