@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ca1crfpjbvmfg"]
+[gd_scene load_steps=19 format=3 uid="uid://ca1crfpjbvmfg"]
 
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="1_6w6u5"]
 [ext_resource type="Texture2D" uid="uid://2e45jy3rjwp1" path="res://Assets/Cards/Enemies/Archer_1.png" id="2_6xujf"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://c4wwj1bsymunb" path="res://Assets/Cards/Enemies/Archer/Hurt/hit-2.png" id="11_7d5h4"]
 [ext_resource type="Texture2D" uid="uid://b24cuii3nho05" path="res://Assets/Cards/Enemies/Archer/Hurt/hit-3.png" id="12_tp0tb"]
 [ext_resource type="Texture2D" uid="uid://bk1w054lfqcdl" path="res://Assets/Cards/Enemies/Archer/Hurt/hit-4.png" id="13_bl240"]
+[ext_resource type="AudioStream" uid="uid://b0t7x5401u7cn" path="res://Assets/Sounds/Battle_bow_attack_1.wav" id="16_lgjm0"]
+[ext_resource type="AudioStream" uid="uid://ddvdrg8q0wftv" path="res://Assets/Sounds/Battle_hit.wav" id="17_03i6y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qmpn1"]
 animations = [{
@@ -115,3 +117,11 @@ sprite_frames = SubResource("SpriteFrames_qmpn1")
 animation = &"idle"
 centered = false
 flip_h = true
+
+[node name="BowAttack1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_lgjm0")
+volume_db = -10.0
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_03i6y")
+volume_db = -10.0

@@ -30,12 +30,14 @@ func _ready():
 	# Draw some cards at the start of fight
 	for i in range(Globals.player_starting_hand_size):
 		deck.draw_card()
+		$Draw.play()
 
 	Increase_Max_Mana()
 
 
 
 func EnemyTurn():
+	$Draw.play()
 	enemy.EnemyAttack()
 	hero.ChangeHeroHealth(enemy.Damage)
 	if hero.CurrentHealth <= 0:

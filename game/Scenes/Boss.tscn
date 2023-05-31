@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d4dlguoon0ljm"]
+[gd_scene load_steps=27 format=3 uid="uid://d4dlguoon0ljm"]
 
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="1_c3gsb"]
 [ext_resource type="Texture2D" uid="uid://dq3dd2o2ik5ji" path="res://Assets/Cards/Enemies/Boss_1.png" id="2_ic1hn"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://2idaq38e65x8" path="res://Assets/Cards/Enemies/Boss/Idle/Idle10.png" id="12_leypj"]
 [ext_resource type="Texture2D" uid="uid://cx0sbldike7np" path="res://Assets/Cards/Enemies/Boss/Hurt/Hit2.png" id="13_eo0ie"]
 [ext_resource type="Texture2D" uid="uid://boo63i84lrwnv" path="res://Assets/Cards/Enemies/Boss/Idle/Idle8.png" id="13_ewisl"]
+[ext_resource type="AudioStream" uid="uid://dqvx4me0kq4u3" path="res://Assets/Sounds/Battle_sword_attack_1.wav" id="24_dt7fo"]
+[ext_resource type="AudioStream" uid="uid://ddvdrg8q0wftv" path="res://Assets/Sounds/Battle_hit.wav" id="25_cmbq7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bcduo"]
 animations = [{
@@ -145,3 +147,10 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_bcduo")
 animation = &"idle"
 flip_h = true
+
+[node name="SwordAttack1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_dt7fo")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("25_cmbq7")
+volume_db = -10.0

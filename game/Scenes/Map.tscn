@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsjlbp64r573o"]
+[gd_scene load_steps=3 format=3 uid="uid://bsjlbp64r573o"]
 
 [ext_resource type="Script" path="res://Scripts/Map/Map.gd" id="1_mfglo"]
+[ext_resource type="AudioStream" uid="uid://boms7cy2nwwoh" path="res://Assets/Sounds/Map_open.wav" id="2_s7xmt"]
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_mfglo")
+
+[node name="MapOpen" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_s7xmt")
+volume_db = -10.0

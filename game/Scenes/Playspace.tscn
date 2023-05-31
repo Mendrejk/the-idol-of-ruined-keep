@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://do6st57y3qahk"]
+[gd_scene load_steps=29 format=3 uid="uid://do6st57y3qahk"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
 [ext_resource type="PackedScene" uid="uid://bjoewvcn45yt1" path="res://Scenes/Hero.tscn" id="2_66an5"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://clbb18ss6fp0m" path="res://Assets/GUI/mana-empty.png" id="18_i3t3a"]
 [ext_resource type="Texture2D" uid="uid://dae4adf1xblq2" path="res://Assets/GUI/mana-fill.png" id="19_wk7qd"]
 [ext_resource type="AudioStream" uid="uid://krrofts2w80b" path="res://Assets/Sounds/Battle_music.wav" id="20_srjqf"]
+[ext_resource type="AudioStream" uid="uid://bpedbmsa6n0xe" path="res://Assets/Sounds/Draw_sword.wav" id="22_brrdj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybrko"]
 bg_color = Color(0, 0, 0, 1)
@@ -296,6 +297,10 @@ libraries = {
 stream = ExtResource("20_srjqf")
 volume_db = -5.0
 autoplay = true
+
+[node name="Draw" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_brrdj")
+volume_db = -10.0
 
 [node name="Node" type="Node" parent="."]
 

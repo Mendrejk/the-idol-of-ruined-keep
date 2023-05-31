@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://j37b2cwa1a0f"]
+[gd_scene load_steps=5 format=3 uid="uid://j37b2cwa1a0f"]
 
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="1_ios45"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="2_nn0b3"]
+[ext_resource type="AudioStream" uid="uid://dqvx4me0kq4u3" path="res://Assets/Sounds/Battle_sword_attack_1.wav" id="3_7mvlh"]
+[ext_resource type="AudioStream" uid="uid://ddvdrg8q0wftv" path="res://Assets/Sounds/Battle_hit.wav" id="4_ope0d"]
 
 [node name="Rogue" type="MarginContainer"]
 offset_right = 200.0
@@ -36,3 +38,10 @@ texture_filter = 3
 scale = Vector2(9, 9)
 centered = false
 flip_h = true
+
+[node name="SwordAttack1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7mvlh")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ope0d")
+volume_db = -10.0

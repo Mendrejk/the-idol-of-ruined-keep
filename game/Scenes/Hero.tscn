@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bjoewvcn45yt1"]
+[gd_scene load_steps=24 format=3 uid="uid://bjoewvcn45yt1"]
 
 [ext_resource type="Script" path="res://Scripts/Hero.gd" id="1_npkjj"]
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="2_l7nbx"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://wkvemw1r4aq0" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_5.png" id="12_xwg1w"]
 [ext_resource type="Texture2D" uid="uid://ddgdhqh2v0ye6" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_6.png" id="13_dab08"]
 [ext_resource type="Texture2D" uid="uid://dkamutsandbgh" path="res://Assets/Cards/Characters/Hero/Idle/HeroKnight_Idle_7.png" id="14_5imto"]
+[ext_resource type="AudioStream" uid="uid://dqvx4me0kq4u3" path="res://Assets/Sounds/Battle_sword_attack_1.wav" id="21_d11pk"]
+[ext_resource type="AudioStream" uid="uid://ddvdrg8q0wftv" path="res://Assets/Sounds/Battle_hit.wav" id="22_5d5kt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i2r8v"]
 animations = [{
@@ -121,3 +123,10 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_i2r8v")
 animation = &"idle"
 centered = false
+
+[node name="SwordAttack1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_d11pk")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_5d5kt")
+volume_db = -10.0

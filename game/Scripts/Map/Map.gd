@@ -14,7 +14,7 @@ var active_location = null
 func _ready():
 	var generator = preload("res://Scripts/Map/MapGenerator.gd").new()
 	var map_data = generator.generate(plane_len, node_count, path_count)
-	
+	$MapOpen.play()
 	for k in map_data.nodes.keys():
 		var point = map_data.nodes[k]
 		var map_location = map_location_scene.instantiate()

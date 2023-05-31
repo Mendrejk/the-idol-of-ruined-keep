@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://0446c6t0gdkj"]
+[gd_scene load_steps=21 format=3 uid="uid://0446c6t0gdkj"]
 
 [ext_resource type="Script" path="res://Scripts/Bandit.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="2_vcxgy"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dbv1rb40emqgq" path="res://Assets/Cards/Enemies/Bandit/Attack/LightBandit_Attack_4.png" id="10_y7ecw"]
 [ext_resource type="Texture2D" uid="uid://c5tvk3wrf0qbu" path="res://Assets/Cards/Enemies/Bandit/Attack/LightBandit_Attack_6.png" id="11_mmgo5"]
 [ext_resource type="Texture2D" uid="uid://bmg8tdxa77suu" path="res://Assets/Cards/Enemies/Bandit/Attack/LightBandit_Attack_7.png" id="12_oxn00"]
+[ext_resource type="AudioStream" uid="uid://dqvx4me0kq4u3" path="res://Assets/Sounds/Battle_sword_attack_1.wav" id="18_naxuc"]
+[ext_resource type="AudioStream" uid="uid://ddvdrg8q0wftv" path="res://Assets/Sounds/Battle_hit.wav" id="19_kxq6n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l81pt"]
 animations = [{
@@ -119,3 +121,10 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_l81pt")
 animation = &"idle"
 centered = false
+
+[node name="SwordAttack1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_naxuc")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_kxq6n")
+volume_db = -10.0
