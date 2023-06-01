@@ -1,0 +1,144 @@
+[gd_scene load_steps=14 format=3 uid="uid://uwvlgxcym1pg"]
+
+[ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_m24ia"]
+[ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="2_l2fpp"]
+[ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="3_vccu1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qubqd"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yh2im"]
+font_size = 150
+font_color = Color(0.701961, 0.619608, 0.14902, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6lq06"]
+font_size = 75
+
+[sub_resource type="Theme" id="Theme_wvgvv"]
+default_font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aeyuv"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oow4u"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmvjt"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdj7t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhe30"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpnt5"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="StartMenu" type="Node2D"]
+script = ExtResource("1_m24ia")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.857143, 0.723214)
+texture = ExtResource("2_l2fpp")
+
+[node name="PanelContainer" type="PanelContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -672.0
+offset_top = -448.0
+offset_right = -672.0
+offset_bottom = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qubqd")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/PanelContainer"]
+layout_mode = 2
+
+[node name="TextRow" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 60
+
+[node name="Title" type="Label" parent="Background/PanelContainer/MarginContainer/TextRow"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vccu1")
+text = "The idol of ruined keep"
+label_settings = SubResource("LabelSettings_yh2im")
+horizontal_alignment = 1
+
+[node name="SubtextRow" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer/TextRow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 60
+
+[node name="Subtitle" type="Label" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_vccu1")
+text = "Autorzy:
+Jakub Stodolski
+Sebastian Łakomy"
+label_settings = SubResource("LabelSettings_6lq06")
+horizontal_alignment = 1
+
+[node name="ButtonsRow" type="VBoxContainer" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = SubResource("Theme_wvgvv")
+theme_override_constants/separation = 20
+
+[node name="StartButton" type="Button" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vccu1")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_aeyuv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oow4u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pmvjt")
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vccu1")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_qdj7t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dhe30")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xpnt5")
+text = "Ustawienia"
+
+[node name="QuitButton" type="Button" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vccu1")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_qdj7t")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dhe30")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xpnt5")
+text = "Wyjdź"
+
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -23,7 +23,7 @@ func _ready():
 		var global_enemy = $Enemies.get_child(3)
 		enemy = global_enemy
 	elif Globals.level_number == 4:
-		get_tree().change_scene_to_file("res://Scenes/Defeat.tscn")
+		get_tree().change_scene_to_file("res://Scenes/StartMenu.tscn")
 	randomize()
 	enemy.visible = true
 	hero.visible = true
