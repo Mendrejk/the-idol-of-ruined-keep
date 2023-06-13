@@ -4,8 +4,8 @@ signal textbox_closed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Globals.level_number != 0:
-		print("sprawdz scene dialogue")
+	if Globals.level_number == 3:
+		play_boss_entry()
 	else:
 		play_intro()
 
@@ -75,5 +75,37 @@ func play_intro():
 	$Background/TextBox/Leader.hide()
 	$Background/TextBox/Leon.show()
 	display_text("Leon: No to w drogę.")
+	await textbox_closed
+	get_tree().change_scene_to_file("res://Scenes/Playspace.tscn")
+
+func play_boss_entry():
+	$Background/TextBox.hide()
+	$Background/TextBox/Boss.show()
+	display_text("Herszt bandytów: Hm? Kto śmie zakłócać mój spokój podczas 
+	biesiady?")
+	await textbox_closed
+	$Background/TextBox/Boss.hide()
+	$Background/TextBox/Leon.show()
+	display_text("Leon: Pewien zdeterminowany rycerz.")
+	await textbox_closed
+	$Background/TextBox/Leon.hide()
+	$Background/TextBox/Boss.show()
+	display_text("Herszt bandytów: Aaa to Ty jesteś tym wioskowym strażnikiem 
+	tak? Prawie udało Ci się mnie przekonać do tego że jesteś 
+	rycerzem haha!")
+	await textbox_closed
+	display_text("Herszt bandytów: Słuchaj widzę że przeszedłeś kawał drogi 
+	aby się tu dostać, patrząc na Twoje ostrze to musiałeś pokonać 
+	wielu moich chłopaków. W związku z tym dostaniesz jednorazową 
+	ofertę - przyłącz się do naszej szajki, nie pożałujesz.")
+	await textbox_closed
+	$Background/TextBox/Boss.hide()
+	$Background/TextBox/Leon.show()
+	display_text("Leon: Nie, nie jestem taki jak Roderick. Mnie tak łatwo nie 
+	przekonasz.")
+	await textbox_closed
+	$Background/TextBox/Leon.hide()
+	$Background/TextBox/Boss.show()
+	display_text("Herszt bandytów: To był Twój ostatni błąd w życiu. Giń!")
 	await textbox_closed
 	get_tree().change_scene_to_file("res://Scenes/Playspace.tscn")
