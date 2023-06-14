@@ -12,13 +12,16 @@ var dodge_chance
 func _ready():
 	deck.deck_emptied.connect(_on_deck_emptied)
 	if Globals.level_number == 0:
-		var global_enemy = $Enemies.get_child(0)
+		Globals.enemy_number = randi()%2
+		var global_enemy = $Enemies.get_child(Globals.enemy_number)
 		enemy = global_enemy
 	elif Globals.level_number == 1:
-		var global_enemy = $Enemies.get_child(1)
+		Globals.enemy_number = randi()%2
+		var global_enemy = $Enemies.get_child(Globals.enemy_number)
 		enemy = global_enemy
 	elif Globals.level_number == 2:
-		var global_enemy = $Enemies.get_child(2)
+		Globals.enemy_number = randi()%2+1
+		var global_enemy = $Enemies.get_child(Globals.enemy_number)
 		enemy = global_enemy
 	elif Globals.level_number == 3:
 		var global_enemy = $Enemies.get_child(3)

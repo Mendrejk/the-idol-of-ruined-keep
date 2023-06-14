@@ -94,13 +94,13 @@ func _input(event):
 							# TODO: add some enemy select mechanic if there are more enemies
 							#var first_enemy = $'../../Enemies'.get_child(0)
 							if Globals.level_number == 0:
-								var global_enemy = $'../../Enemies'.get_child(0)
+								var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
 								enemy = global_enemy
 							elif Globals.level_number == 1:
-								var global_enemy = $'../../Enemies'.get_child(1)
+								var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
 								enemy = global_enemy
 							elif Globals.level_number == 2:
-								var global_enemy = $'../../Enemies'.get_child(2)
+								var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
 								enemy = global_enemy
 							elif Globals.level_number == 3:
 								var global_enemy = $'../../Enemies'.get_child(3)
