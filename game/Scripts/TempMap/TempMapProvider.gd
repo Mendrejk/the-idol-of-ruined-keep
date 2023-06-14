@@ -16,80 +16,88 @@ func get_map() -> TempMapLocationData:
 func generate_map() -> TempMapLocationData:
 	var map_length: int = randi_range(Globals.map_min_length, Globals.map_max_length)
 	var miniboss_location: int = int(map_length * Globals.map_miniboss_length_ratio)
-	
+
 	var root: TempMapLocationData = TempMapLocationData.new()
-	var visit_queue: Array[TempMapLocationGenerationData] = [TempMapLocationGenerationData.new(root, Vector2i(0, 0))]
+	var visit_queue: Array[TempMapLocationData] = [root]
 
 	var position_map: TempPositionMap = TempPositionMap.new()
-	position_map.position_map = {Vector2i(0,0): root}
-	
+	position_map.position_map = {root.coordinates: root}
+
 	var is_miniboss_generated: bool = false
 	var is_boss_generated: bool = false
 
 	while (not visit_queue.is_empty()):
-		var current_location: TempMapLocationGenerationData = visit_queue.pop_front()
+		var current_location: TempMapLocationData = visit_queue.pop_front()
 		# + 1 for counting from 1, + 1 for child position
-		var length = current_location.generation_position.y + 2
+		var length = current_location.coordinates.y + 2
 
-		var is_generation_finished = current_location.location.is_boss_location
+		var is_generation_finished = current_location.is_boss_location
 		if (is_generation_finished):
 			break
 
 		if (length == miniboss_location):
 			if (is_miniboss_generated):
-				pass
+				continue
 
 			var miniboss_parents: Array[TempMapLocationData] = []
-			var current_position := Vector2i(0, current_location.generation_position.y)
+			var current_position := Vector2i(0, current_location.coordinates.y)
 			while (position_map.position_map.has(current_position)):
 				miniboss_parents.append(position_map.position_map[current_position])
 				current_position.x += 1
 
-			var miniboss := TempMapLocationData.new(miniboss_parents, 0, true)
-			visit_queue.push_back(position_map.add_child(current_location, miniboss))
+			var miniboss_position = position_map.find_child_position(current_location.coordinates.y)
+			var miniboss := TempMapLocationData.new(miniboss_parents, miniboss_position, 0, true)
+			visit_queue.push_back(position_map.add(miniboss))
 
 			is_miniboss_generated = true
 		elif (length == map_length):
 			if (is_boss_generated):
-				pass
+				continue
 
 			var boss_parents: Array[TempMapLocationData] = []
-			var current_position := Vector2i(0, current_location.generation_position.y)
+			var current_position := Vector2i(0, current_location.coordinates.y)
 			while (position_map.position_map.has(current_position)):
 				boss_parents.append(position_map.position_map[current_position])
 				current_position.x += 1
 
-			var boss := TempMapLocationData.new(boss_parents, 0, false, true)
-			visit_queue.push_back(position_map.add_child(current_location, boss))
+			var boss_position = position_map.find_child_position(current_location.coordinates.y)
+			var boss := TempMapLocationData.new(boss_parents, boss_position, 0, false, true)
+			visit_queue.push_back(position_map.add(boss))
 
 			is_boss_generated = true
-			pass
 		else:
-			var should_deepen: bool = current_location.location.deepness_level < Globals.map_max_deepness_level and randf() < Globals.map_deepen_chance
-			var should_shallow: bool = current_location.location.deepness_level > 0 and randf() < Globals.map_shallow_chance
+			var should_deepen: bool = current_location.deepness_level < Globals.map_max_deepness_level and randf() < Globals.map_deepen_chance
+			var should_shallow: bool = current_location.deepness_level > 0 and randf() < Globals.map_shallow_chance
 			if (should_deepen):
-					for deepened_child in current_location.location.add_deepened_children():
-						visit_queue.push_back(position_map.add_child(current_location, deepened_child))
+					for deepened_child in position_map.add_deepened_children(current_location):
+						visit_queue.push_back(deepened_child)
 			elif (should_shallow and can_shallow(position_map, current_location)):
 				visit_queue.push_back(position_map.add_shallowed_child(current_location))
 			else:
-				visit_queue.push_back(
-					position_map.add_child(
-						current_location,
-						TempMapLocationData.new([current_location.location], current_location.location.deepness_level)
-					)
+				if current_location.has_shallowed():
+					continue
+
+				var child_position: Vector2i = position_map.find_child_position(
+					current_location.coordinates.y)
+				var child := TempMapLocationData.new(
+					[current_location], child_position, current_location.deepness_level
 				)
+				visit_queue.push_back(position_map.add(child))
 
 	return root
 
 
-func can_shallow(position_map: TempPositionMap, location: TempMapLocationGenerationData) -> bool:
-	var siblings: Array[TempMapLocationGenerationData] = []
-	var current_location := Vector2i(0, location.generation_position.y)
+func can_shallow(position_map: TempPositionMap, location: TempMapLocationData) -> bool:
+	var potential_other_shallowers: Array[TempMapLocationData] = []
 
-	while (position_map.position_map.has(current_location)):
-		if (current_location != location.generation_position):
-			siblings.append(position_map.position_map[current_location])
-		current_location.x += 1
+	if (location.coordinates.x > 0):
+		var previous_sibling: TempMapLocationData = position_map.position_map[Vector2i(location.coordinates.x - 1, location.coordinates.y)]
+		if not location.shallowed_with.has(previous_sibling.coordinates) and previous_sibling.has_not_sired_unshallowed_children():
+			potential_other_shallowers.push_back(previous_sibling)
 
-	return !siblings.is_empty()
+	var next_sibling_position: Vector2i = Vector2i(location.coordinates.x + 1, location.coordinates.y)
+	var next_sibling: TempMapLocationData = position_map.position_map.get(next_sibling_position)
+	if (next_sibling != null and not location.shallowed_with.has(next_sibling_position) and next_sibling.has_not_sired_unshallowed_children()):
+		potential_other_shallowers.push_back(next_sibling)
+
+	return not potential_other_shallowers.is_empty()

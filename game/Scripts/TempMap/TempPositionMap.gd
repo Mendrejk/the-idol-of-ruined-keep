@@ -6,51 +6,57 @@ class_name TempPositionMap
 var position_map: Dictionary = {}
 
 
-func add_child(
-	parent: TempMapLocationGenerationData,
-	child: TempMapLocationData
-	) -> TempMapLocationGenerationData:
-	var child_position: Vector2i = find_child_position(parent.generation_position.y)
+func add(location: TempMapLocationData) -> TempMapLocationData:
+	position_map[location.coordinates] = location
 
-	var generation_child := TempMapLocationGenerationData.new(child, child_position)
-
-	position_map[child_position] = generation_child
-
-	return generation_child
+	return location
 
 
-func add_shallowed_child(parent: TempMapLocationGenerationData) -> TempMapLocationGenerationData:
-	var potential_other_shallowers: Array[TempMapLocationGenerationData] = []
+func add_deepened_children(parent: TempMapLocationData) -> Array[TempMapLocationData]:
+	var _children: Array[TempMapLocationData] = []
+	for n in 2:
+		var child_position = find_child_position(parent.coordinates.y)
+		var child: TempMapLocationData = TempMapLocationData.new(
+			[parent], child_position, parent.deepness_level + 1
+		)
+		_children.append(child)
+		add(child)
 
-	if (parent.generation_position.x > 0):
-		potential_other_shallowers.push_back(position_map[Vector2i(parent.generation_position.x - 1, parent.generation_position.y)])
+	return _children
 
-	var next_sibling_position: Vector2i = Vector2i(parent.generation_position.x + 1, parent.generation_position.y)
-	var next_sibling: TempMapLocationGenerationData = position_map.get(next_sibling_position)
-	if (next_sibling != null):
+
+func add_shallowed_child(parent: TempMapLocationData) -> TempMapLocationData:
+	var potential_other_shallowers: Array[TempMapLocationData] = []
+
+	if (parent.coordinates.x > 0):
+		var previous_sibling: TempMapLocationData = position_map[Vector2i(parent.coordinates.x - 1, parent.coordinates.y)]
+		if not parent.shallowed_with.has(previous_sibling.coordinates) and previous_sibling.has_not_sired_unshallowed_children():
+			potential_other_shallowers.push_back(previous_sibling)
+
+	var next_sibling_position: Vector2i = Vector2i(parent.coordinates.x + 1, parent.coordinates.y)
+	var next_sibling: TempMapLocationData = position_map.get(next_sibling_position)
+	if (next_sibling != null and not parent.shallowed_with.has(next_sibling_position) and next_sibling.has_not_sired_unshallowed_children()):
 		potential_other_shallowers.push_back(next_sibling)
 	
-	var other_shallower: TempMapLocationGenerationData = potential_other_shallowers[randi() % potential_other_shallowers.size()]
-	var shallowers: Array[TempMapLocationGenerationData] = [parent, other_shallower]
+	var other_shallower: TempMapLocationData = potential_other_shallowers[randi() % potential_other_shallowers.size()]
+	var shallowers: Array[TempMapLocationData] = [parent, other_shallower]
+	
+	parent.shallowed_with.append(other_shallower.coordinates)
+	other_shallower.shallowed_with.append(parent.coordinates)
 
 	var child_deepness_level: int = (func():
-		if (parent.location.deepness_level == other_shallower.location.deepness_level):
-			return parent.location.deepness_level - 1
-		elif (parent.location.deepness_level < other_shallower.location.deepness_level):
-			return parent.location.deepness_level
+		if (parent.deepness_level == other_shallower.deepness_level):
+			return parent.deepness_level - 1
+		elif (parent.deepness_level < other_shallower.deepness_level):
+			return parent.deepness_level
 
-		return other_shallower.location.deepness_level).call()
+		return other_shallower.deepness_level).call()
 
-	var shallowers_data: Array[TempMapLocationData] = []
-	for shallower in shallowers:
-		shallowers_data.append(shallower.location)
+	var child_position: Vector2i = find_child_position(parent.coordinates.y)
+	var child := TempMapLocationData.new(shallowers, child_position, child_deepness_level)
+	add(child)
 
-	var child := TempMapLocationData.new(shallowers_data, child_deepness_level)
-	var child_position: Vector2i = find_child_position(parent.generation_position.y)
-	
-	var generation_child := TempMapLocationGenerationData.new(child, child_position)
-	
-	return generation_child
+	return child
 
 
 func find_child_position(parent_y: int) -> Vector2i:
