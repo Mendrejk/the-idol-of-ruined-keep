@@ -321,6 +321,7 @@ offset_left = 379.0
 offset_top = 379.0
 offset_right = 467.0
 offset_bottom = 406.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("10_n3ast")
 theme_override_font_sizes/font_size = 30
 text = "Indicator"

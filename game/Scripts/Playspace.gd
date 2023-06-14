@@ -51,6 +51,12 @@ func EnemyTurn():
 		$HeroIndicator.visible = false
 	else:
 		hero.ChangeHeroHealth(enemy.Damage)
+		$HeroIndicator.visible = true
+		$HeroIndicator.add_theme_color_override("font_color", Color(255,0,0))
+		$HeroIndicator.text = "-"+str(enemy.Damage)
+		await get_tree().create_timer(1).timeout
+		$HeroIndicator.add_theme_color_override("font_color", Color(255,255,255))
+		$HeroIndicator.visible = false
 		if hero.CurrentHealth <= 0:
 			get_tree().change_scene_to_file("res://Scenes/Defeat.tscn")
 
