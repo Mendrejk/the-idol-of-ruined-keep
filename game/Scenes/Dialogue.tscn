@@ -47,7 +47,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_77110")
 layout_mode = 2
 
 [node name="TextBox" type="Panel" parent="Background"]
-anchors_preset = -1
+anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0

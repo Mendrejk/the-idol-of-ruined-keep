@@ -11,6 +11,7 @@ func _ready():
 	#$VBoxContainer/ImageContainer/Image.scale *= $VBoxContainer/ImageContainer.rect_min_size/$VBoxContainer/ImageContainer/Image.texture.get_size()
 	$VBoxContainer/Bar/TextureProgressBar.value = 100
 	$VBoxContainer/Bar/Count/Number.text = str(CurrentHealth)
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
 
 
 func ChangeEnemyHealth(Number):
@@ -19,16 +20,15 @@ func ChangeEnemyHealth(Number):
 	$VBoxContainer/Bar/Count/Number.text = str(CurrentHealth)
 	$Hit.play()
 	$'../../AnimationPlayer'.play("enemy_damaged")
-	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("hurt")
-	#await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
-	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("hurt")
+	await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
 
 	if CurrentHealth <= 0:
 		get_tree().change_scene_to_file("res://Scenes/Map/Map.tscn")
 
 func EnemyAttack():
 	$SwordAttack1.play()
-	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("attack")
-	#await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
-	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
-	print("odkomentować w rogue.gd")
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("attack")
+	await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
+	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")

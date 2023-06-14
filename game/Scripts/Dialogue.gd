@@ -5,9 +5,9 @@ signal textbox_closed
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if Globals.level_number == 3:
-		play_boss_entry()
-	else:
 		play_intro()
+	else:
+		play_boss_entry()
 
 
 func _input(event):

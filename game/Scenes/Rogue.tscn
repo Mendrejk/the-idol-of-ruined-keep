@@ -1,10 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://j37b2cwa1a0f"]
+[gd_scene load_steps=17 format=3 uid="uid://j37b2cwa1a0f"]
 
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="1_ios45"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="2_nn0b3"]
 [ext_resource type="AudioStream" uid="uid://dqvx4me0kq4u3" path="res://Assets/Sounds/Battle_sword_attack_1.wav" id="3_7mvlh"]
-[ext_resource type="Texture2D" uid="uid://sorj7c3q2l6j" path="res://Assets/Cards/Enemies/Rogue_1.png" id="3_vybu8"]
+[ext_resource type="Texture2D" uid="uid://7ivwlty6oufs" path="res://Assets/Cards/Enemies/Killer/Idle/idle-1.png" id="3_jun1o"]
+[ext_resource type="Texture2D" uid="uid://cg15kv80g2u5c" path="res://Assets/Cards/Enemies/Killer/Attack/attack-A1.png" id="4_oi46i"]
 [ext_resource type="AudioStream" uid="uid://ddvdrg8q0wftv" path="res://Assets/Sounds/Battle_hit.wav" id="4_ope0d"]
+[ext_resource type="Texture2D" uid="uid://dpds6uuiye404" path="res://Assets/Cards/Enemies/Killer/Attack/attack-A2.png" id="5_slg1i"]
+[ext_resource type="Texture2D" uid="uid://cupjj57x4s8p5" path="res://Assets/Cards/Enemies/Killer/Attack/attack-A3.png" id="6_16kx1"]
+[ext_resource type="Texture2D" uid="uid://b0m58ui5wursm" path="res://Assets/Cards/Enemies/Killer/Attack/attack-A4.png" id="7_mm84r"]
+[ext_resource type="Texture2D" uid="uid://brvm6kd66hw4l" path="res://Assets/Cards/Enemies/Killer/Attack/attack-A6.png" id="8_2fkmg"]
+[ext_resource type="Texture2D" uid="uid://bl31dqc86rf32" path="res://Assets/Cards/Enemies/Killer/Attack/attack-A5.png" id="9_27osh"]
+[ext_resource type="Texture2D" uid="uid://j4g7b0p54utg" path="res://Assets/Cards/Enemies/Killer/Hurt/hit-1.png" id="10_xscdk"]
+[ext_resource type="Texture2D" uid="uid://blsmodpdt1nv5" path="res://Assets/Cards/Enemies/Killer/Hurt/hit-2.png" id="11_k6fuk"]
+[ext_resource type="Texture2D" uid="uid://dkxbm1myvd80y" path="res://Assets/Cards/Enemies/Killer/Hurt/hit-3.png" id="12_1todl"]
+[ext_resource type="Texture2D" uid="uid://bb7wcvetg728f" path="res://Assets/Cards/Enemies/Killer/Idle/idle-2.png" id="13_x00kc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jeoxq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_oi46i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_slg1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_16kx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mm84r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2fkmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_27osh")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_xscdk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_k6fuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1todl")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_jun1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_x00kc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
 
 [node name="Rogue" type="MarginContainer"]
 offset_right = 200.0
@@ -20,7 +81,7 @@ layout_mode = 2
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_nn0b3")
 theme_override_font_sizes/font_size = 30
-text = "Skrytobójca
+text = "Zabójca
 "
 horizontal_alignment = 1
 
@@ -35,11 +96,21 @@ size_flags_horizontal = 0
 size_flags_vertical = 10
 
 [node name="Image" type="Sprite2D" parent="VBoxContainer/ImageContainer"]
+visible = false
 texture_filter = 3
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("3_vybu8")
+scale = Vector2(3, 3)
+texture = ExtResource("3_jun1o")
 centered = false
-offset = Vector2(100, 0)
+offset = Vector2(-50, -30)
+flip_h = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/ImageContainer"]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_jeoxq")
+animation = &"idle"
+frame_progress = 0.502665
+offset = Vector2(20, 15)
+flip_h = true
 
 [node name="SwordAttack1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_7mvlh")
