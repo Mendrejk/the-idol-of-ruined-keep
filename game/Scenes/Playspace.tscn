@@ -104,7 +104,6 @@ script = ExtResource("1_0opyr")
 [node name="Characters" type="Node" parent="."]
 
 [node name="Hero" parent="Characters" instance=ExtResource("2_66an5")]
-visible = false
 offset_left = 200.0
 offset_top = 308.0
 offset_right = 400.0
@@ -315,6 +314,16 @@ stream = ExtResource("22_brrdj")
 volume_db = -10.0
 
 [node name="Node" type="Node" parent="."]
+
+[node name="HeroIndicator" type="Label" parent="."]
+visible = false
+offset_left = 379.0
+offset_top = 379.0
+offset_right = 467.0
+offset_bottom = 406.0
+theme_override_fonts/font = ExtResource("10_n3ast")
+theme_override_font_sizes/font_size = 30
+text = "Indicator"
 
 [connection signal="pressed" from="TurnPanel/Turn/EndOfTurn" to="." method="_on_end_of_turn_pressed"]
 [connection signal="pressed" from="TurnPanel/Turn/EndOfTurn" to="Deck" method="_on_end_of_turn_pressed"]

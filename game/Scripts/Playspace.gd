@@ -7,6 +7,7 @@ extends Node2D
 var mana_max_value = 0
 var mana_value = mana_max_value
 var enemy
+var dodge_chance
 
 func _ready():
 	deck.deck_emptied.connect(_on_deck_emptied)
@@ -41,10 +42,17 @@ func _ready():
 
 func EnemyTurn():
 	$Draw.play()
+	dodge_chance = randi()%3+1
 	enemy.EnemyAttack()
-	hero.ChangeHeroHealth(enemy.Damage)
-	if hero.CurrentHealth <= 0:
-		get_tree().change_scene_to_file("res://Scenes/Defeat.tscn")
+	if dodge_chance == 1:
+		$HeroIndicator.visible = true
+		$HeroIndicator.text = "Unik!"
+		await get_tree().create_timer(1).timeout
+		$HeroIndicator.visible = false
+	else:
+		hero.ChangeHeroHealth(enemy.Damage)
+		if hero.CurrentHealth <= 0:
+			get_tree().change_scene_to_file("res://Scenes/Defeat.tscn")
 
 func _on_end_of_turn_pressed():
 	EnemyTurn()
