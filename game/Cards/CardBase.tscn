@@ -33,8 +33,25 @@ centered = false
 [node name="Bars" type="VBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="ToppestBar" type="MarginContainer" parent="Bars"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="CostBar" type="HBoxContainer" parent="Bars"]
+layout_mode = 2
+
+[node name="LeftBar" type="MarginContainer" parent="Bars/CostBar"]
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+
+[node name="Cost" type="Label" parent="Bars/CostBar"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_mlq8g")
+theme_override_font_sizes/font_size = 40
+text = "1"
+
 [node name="TopGap" type="MarginContainer" parent="Bars"]
-custom_minimum_size = Vector2(25, 200)
+custom_minimum_size = Vector2(25, 130)
 layout_mode = 2
 
 [node name="TopBar" type="HBoxContainer" parent="Bars"]
@@ -42,7 +59,7 @@ custom_minimum_size = Vector2(200, 15)
 layout_mode = 2
 
 [node name="Leftgap" type="MarginContainer" parent="Bars/TopBar"]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 
 [node name="Name" type="MarginContainer" parent="Bars/TopBar"]
@@ -66,6 +83,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Cost" type="MarginContainer" parent="Bars/TopBar"]
+visible = false
 layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Bars/TopBar/Cost"]
@@ -73,12 +91,6 @@ layout_mode = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Bars/TopBar/Cost"]
 layout_mode = 2
-
-[node name="Cost" type="Label" parent="Bars/TopBar/Cost/CenterContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("4_mlq8g")
-theme_override_font_sizes/font_size = 40
-text = "1"
 
 [node name="RightGap" type="MarginContainer" parent="Bars/TopBar"]
 custom_minimum_size = Vector2(25, 0)
@@ -126,7 +138,7 @@ custom_minimum_size = Vector2(200, 15)
 layout_mode = 2
 
 [node name="Leftgap" type="MarginContainer" parent="Bars/BottomBar"]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 
 [node name="Value" type="MarginContainer" parent="Bars/BottomBar"]

@@ -40,7 +40,7 @@ func _ready():
 	$Focus.set_scale( $Focus.scale * size / $Focus.size)
 
 	$Bars/TopBar/Name/CenterContainer/Name.text = card_data.display_name
-	$Bars/TopBar/Cost/CenterContainer/Cost.text = str(card_data.cost)
+	$Bars/CostBar/Cost.text = str(card_data.cost)
 	$Bars/SpecialText/Type/CenterContainer/Type.text = card_data.type
 	$Bars/BottomBar/Value/CenterContainer/Value.text = str(card_data.value)
 
@@ -73,7 +73,7 @@ var enemy
 func _input(event):
 	match state:
 		Globals.CardState.FocusInHand, Globals.CardState.InMouse, Globals.CardState.InPlay:
-			if event.is_action_pressed("leftclick") and ($'../../'.mana_value>=int($Bars/TopBar/Cost/CenterContainer/Cost.text.right(2))):
+			if event.is_action_pressed("leftclick") and ($'../../'.mana_value>=int($Bars/CostBar/Cost.text.right(2))):
 				if Card_Select:
 					oldstate = state
 					state = Globals.CardState.InMouse
@@ -83,7 +83,7 @@ func _input(event):
 				if Card_Select == false:
 					if oldstate == Globals.CardState.FocusInHand:
 						if is_in_play_area:
-							$'../../'.Decrease_Mana(int($Bars/TopBar/Cost/CenterContainer/Cost.text.right(2)))
+							$'../../'.Decrease_Mana(int($Bars/CostBar/Cost.text.right(2)))
 							$'../../PlayerPanel/Playerdata/TextureProgressBar'.value = $'../../'.mana_value
 							$'../../PlayerPanel/Playerdata/TextureProgressBar/Mana'.text = str($'../../'.mana_value)
 							setup = true
