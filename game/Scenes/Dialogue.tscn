@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://sh11c1df5r06"]
+
+[ext_resource type="Script" path="res://Scripts/Dialogue.gd" id="1_eyi00"]
+[ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="1_xgwgp"]
+[ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="2_gbjyb"]
+[ext_resource type="Texture2D" uid="uid://v6ysuwlfahiq" path="res://Assets/Cards/Characters/Leader/leader.png" id="3_khkft"]
+[ext_resource type="Texture2D" uid="uid://vurhyv0dcliq" path="res://Assets/Cards/Characters/Hero/Portrait/Hero_portrait.png" id="4_a2ghc"]
+[ext_resource type="Texture2D" uid="uid://ba5d621ukrmvi" path="res://Assets/Cards/Enemies/Boss/Portrait/Boss.png" id="5_xog2k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77110"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8d7v"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
+
+[node name="Dialogue" type="Node2D"]
+script = ExtResource("1_eyi00")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.857143, 0.723214)
+texture = ExtResource("1_xgwgp")
+
+[node name="PanelContainer" type="PanelContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -672.0
+offset_top = -448.0
+offset_right = -672.0
+offset_bottom = -448.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_77110")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/PanelContainer"]
+layout_mode = 2
+
+[node name="TextBox" type="Panel" parent="Background"]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -622.0
+offset_top = -697.0
+offset_right = -722.0
+offset_bottom = -498.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 10
+theme_override_styles/panel = SubResource("StyleBoxFlat_d8d7v")
+
+[node name="Leader" type="Sprite2D" parent="Background/TextBox"]
+visible = false
+texture_filter = 1
+position = Vector2(81.8334, 101.049)
+scale = Vector2(4, 4)
+texture = ExtResource("3_khkft")
+
+[node name="Leon" type="Sprite2D" parent="Background/TextBox"]
+visible = false
+texture_filter = 1
+position = Vector2(81.8334, 101.049)
+scale = Vector2(7, 7)
+texture = ExtResource("4_a2ghc")
+
+[node name="Boss" type="Sprite2D" parent="Background/TextBox"]
+visible = false
+texture_filter = 1
+position = Vector2(81.8334, 101.049)
+scale = Vector2(7, 7)
+texture = ExtResource("5_xog2k")
+
+[node name="Label" type="Label" parent="Background/TextBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_gbjyb")
+theme_override_font_sizes/font_size = 50
+text = "text goes here"
+
+[node name="Ticker" type="Label" parent="Background/TextBox"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.3335
+offset_top = -48.1727
+offset_right = -2.3335
+offset_bottom = -4.17273
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_gbjyb")
+theme_override_font_sizes/font_size = 50
+text = ">"
