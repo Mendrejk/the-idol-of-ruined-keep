@@ -105,6 +105,9 @@ func _input(event):
 							elif Globals.level_number == 3:
 								var global_enemy = $'../../Enemies'.get_child(3)
 								enemy = global_enemy
+							elif Globals.level_number == 4:
+								var global_enemy = $'../../Enemies'.get_child(4)
+								enemy = global_enemy
 							var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
 							#first_enemy.ChangeBanditHealth(AttackNo)
 							enemy.ChangeEnemyHealth(AttackNo)

@@ -53,7 +53,7 @@ func _on_input_event(viewport, event, shape_idx):
 	if is_event_left_click and is_valid_node_to_go_to:
 		Globals.level_number += 1
 		print(Globals.level_number)
-		if Globals.level_number == 3:
+		if Globals.level_number == 4 or Globals.level_number == 3:
 			get_tree().change_scene_to_file("res://Scenes/Dialogue.tscn")
 		else:
 			get_tree().change_scene_to_file("res://Scenes/Playspace.tscn")

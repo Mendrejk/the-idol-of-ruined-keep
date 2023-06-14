@@ -17,6 +17,8 @@ var player_starting_hand_size: int = 3
 
 var level_number = 0
 
+var RoderickDefeated = false
+
 # Map globals
 const map_min_length: int = 9
 const map_max_length: int = 11

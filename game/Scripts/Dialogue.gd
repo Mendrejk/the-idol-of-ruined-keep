@@ -4,10 +4,14 @@ signal textbox_closed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Globals.level_number == 3:
-		play_intro()
-	else:
+	if Globals.level_number == 4:
 		play_boss_entry()
+	elif Globals.RoderickDefeated:
+		play_roderick_leave()
+	elif Globals.level_number == 3:
+		play_roderick_entry()
+	else:
+		play_intro()
 
 
 func _input(event):
@@ -109,3 +113,58 @@ func play_boss_entry():
 	display_text("Herszt bandytów: To był Twój ostatni błąd w życiu. Giń!")
 	await textbox_closed
 	get_tree().change_scene_to_file("res://Scenes/Playspace.tscn")
+
+func play_roderick_entry():
+	$Background/TextBox.hide()
+	$Background/TextBox/Roderick.show()
+	display_text("Roderick: Proszę, proszę, kogo my tu mamy.")
+	await textbox_closed
+	$Background/TextBox/Roderick.hide()
+	$Background/TextBox/Leon.show()
+	display_text("Leon: Dobrze wiesz po co tu przyszedłem Rodericku. Nie 
+	wywiniesz się tym razem.")
+	await textbox_closed
+	$Background/TextBox/Leon.hide()
+	$Background/TextBox/Roderick.show()
+	display_text("Roderick: Czyli jednak zdecydowałeś się mnie ścigać? Po 
+	tylu latach nie jesteś w stanie sobie odpuścić?")
+	await textbox_closed
+	$Background/TextBox/Roderick.hide()
+	$Background/TextBox/Leon.show()
+	display_text("Leon: To z Twojej winy całe moje życie legło w gruzach. 
+	Nie wybaczę Ci tego.")
+	await textbox_closed
+	$Background/TextBox/Leon.hide()
+	$Background/TextBox/Roderick.show()
+	display_text("Roderick: Oj błagam, gwardia królewska była strasznie nudna 
+	i okrojona. Powinieneś mi wręcz podziękować że Cię od niej 
+	uwolniłem.")
+	await textbox_closed
+	$Background/TextBox/Roderick.hide()
+	$Background/TextBox/Leon.show()
+	display_text("Leon: Podziękuję Ci moim mieczem! Walcz!")
+	await textbox_closed
+	get_tree().change_scene_to_file("res://Scenes/Playspace.tscn")
+
+func play_roderick_leave():
+	$Background/TextBox.hide()
+	$Background/TextBox/Roderick.show()
+	display_text("Roderick: Jak to… Jak to możliwe?")
+	await textbox_closed
+	$Background/TextBox/Roderick.hide()
+	$Background/TextBox/Leon.show()
+	display_text("Leon: Twój styl walki nic się nie zmienił przez kilka ostatnich 
+	lat.")
+	await textbox_closed
+	$Background/TextBox/Roderick.show()
+	$Background/TextBox/Leon.hide()
+	display_text("Roderick: No cóż… *kaszle* W tym starciu wygrał lepszy 
+	wojownik… *kaszle* Ale nie jesteś lepszy od herszta i 
+	wkrótce się o tym przekonasz…")
+	await textbox_closed
+	$Background/TextBox/Roderick.hide()
+	$Background/TextBox/Leon.show()
+	display_text("Leon: To się dopiero okaże.")
+	await textbox_closed
+	Globals.RoderickDefeated = false
+	get_tree().change_scene_to_file("res://Scenes/Map/Map.tscn")

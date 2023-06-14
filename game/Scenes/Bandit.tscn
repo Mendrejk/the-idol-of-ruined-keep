@@ -1,6 +1,5 @@
 [gd_scene load_steps=21 format=3 uid="uid://0446c6t0gdkj"]
 
-[ext_resource type="Script" path="res://Scripts/Bandit.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="2_vcxgy"]
 [ext_resource type="Texture2D" uid="uid://oqheoovb2das" path="res://Assets/Cards/Enemies/Bandit_1.png" id="3"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="4_hr65h"]
@@ -17,10 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://dbv1rb40emqgq" path="res://Assets/Cards/Enemies/Bandit/Attack/LightBandit_Attack_4.png" id="10_y7ecw"]
 [ext_resource type="Texture2D" uid="uid://c5tvk3wrf0qbu" path="res://Assets/Cards/Enemies/Bandit/Attack/LightBandit_Attack_6.png" id="11_mmgo5"]
 [ext_resource type="Texture2D" uid="uid://bmg8tdxa77suu" path="res://Assets/Cards/Enemies/Bandit/Attack/LightBandit_Attack_7.png" id="12_oxn00"]
+[ext_resource type="Texture2D" uid="uid://5t5vg24i86pr" path="res://Assets/Cards/Enemies/Bandit/Idle/LightBandit_Idle_0.png" id="15_7v2ve"]
 [ext_resource type="AudioStream" uid="uid://dqvx4me0kq4u3" path="res://Assets/Sounds/Battle_sword_attack_1.wav" id="18_naxuc"]
 [ext_resource type="AudioStream" uid="uid://ddvdrg8q0wftv" path="res://Assets/Sounds/Battle_hit.wav" id="19_kxq6n"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_l81pt"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2jte6"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -30,16 +30,16 @@ animations = [{
 "texture": ExtResource("6_l5sqb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_cdegh")
-}, {
-"duration": 1.0,
 "texture": ExtResource("8_t8g2p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_4t3w4")
+"texture": ExtResource("7_cdegh")
 }, {
 "duration": 1.0,
 "texture": ExtResource("10_y7ecw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4t3w4")
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_mmgo5")
@@ -60,20 +60,20 @@ animations = [{
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 3.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_kywri")
+"texture": ExtResource("15_7v2ve")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_t2ju0")
+"texture": ExtResource("5_kywri")
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_5wu32")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3")
+"texture": ExtResource("6_t2ju0")
 }],
 "loop": true,
 "name": &"idle",
@@ -83,7 +83,6 @@ animations = [{
 [node name="Bandit" type="MarginContainer"]
 offset_right = 161.0
 offset_bottom = 204.0
-script = ExtResource("2")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -118,9 +117,9 @@ centered = false
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/ImageContainer"]
 texture_filter = 1
 scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_l81pt")
-animation = &"attack"
-centered = false
+sprite_frames = SubResource("SpriteFrames_2jte6")
+animation = &"idle"
+offset = Vector2(25, 20)
 
 [node name="SwordAttack1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("18_naxuc")

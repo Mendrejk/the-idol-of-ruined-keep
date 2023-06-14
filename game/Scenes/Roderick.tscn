@@ -1,0 +1,128 @@
+[gd_scene load_steps=19 format=3 uid="uid://hbfp4moo7euv"]
+
+[ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="2_otwpe"]
+[ext_resource type="PackedScene" uid="uid://qt6kdy1f23le" path="res://Scenes/PixelBar.tscn" id="3_4fqxm"]
+[ext_resource type="Texture2D" uid="uid://bhr84ax0a6kc2" path="res://Assets/Cards/Enemies/Roderick/Idle/Idle1.png" id="4_ugm7f"]
+[ext_resource type="Texture2D" uid="uid://nt2t206vou5n" path="res://Assets/Cards/Enemies/Roderick/Attack/Attack1.png" id="5_26w8j"]
+[ext_resource type="Texture2D" uid="uid://dpaos3lm6pien" path="res://Assets/Cards/Enemies/Roderick/Attack/Attack2.png" id="6_mhkd0"]
+[ext_resource type="Texture2D" uid="uid://bmbubxhh8t1ki" path="res://Assets/Cards/Enemies/Roderick/Attack/Attack3.png" id="7_vqype"]
+[ext_resource type="Texture2D" uid="uid://2ptv52k14xph" path="res://Assets/Cards/Enemies/Roderick/Attack/Attack4.png" id="8_wijot"]
+[ext_resource type="Texture2D" uid="uid://d4bu7yu10f2nf" path="res://Assets/Cards/Enemies/Roderick/Hurt/Hit1.png" id="9_nxgbg"]
+[ext_resource type="Texture2D" uid="uid://duifs5s5rdihs" path="res://Assets/Cards/Enemies/Roderick/Hurt/Hit2.png" id="10_6s416"]
+[ext_resource type="Texture2D" uid="uid://dxo1jvwhhpos5" path="res://Assets/Cards/Enemies/Roderick/Hurt/Hit3.png" id="11_mnog8"]
+[ext_resource type="Texture2D" uid="uid://b0wl2tmdno3ny" path="res://Assets/Cards/Enemies/Roderick/Idle/Idle2.png" id="12_vn1va"]
+[ext_resource type="Texture2D" uid="uid://cmne3ofxldh0w" path="res://Assets/Cards/Enemies/Roderick/Idle/Idle4.png" id="13_37rdr"]
+[ext_resource type="Texture2D" uid="uid://det2lm4360etm" path="res://Assets/Cards/Enemies/Roderick/Idle/Idle5.png" id="14_7gl6c"]
+[ext_resource type="Texture2D" uid="uid://bvg2nwt73kmud" path="res://Assets/Cards/Enemies/Roderick/Idle/Idle 6.png" id="15_mlkx5"]
+[ext_resource type="Texture2D" uid="uid://dxrjshr50k3fe" path="res://Assets/Cards/Enemies/Roderick/Idle/Idle3.png" id="16_1w4qr"]
+[ext_resource type="AudioStream" uid="uid://dqvx4me0kq4u3" path="res://Assets/Sounds/Battle_sword_attack_1.wav" id="18_2nmd0"]
+[ext_resource type="AudioStream" uid="uid://ddvdrg8q0wftv" path="res://Assets/Sounds/Battle_hit.wav" id="19_x0vof"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l81pt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_26w8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_mhkd0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vqype")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wijot")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_nxgbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6s416")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_mnog8")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ugm7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vn1va")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_37rdr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_7gl6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_mlkx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1w4qr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[node name="Roderick" type="MarginContainer"]
+offset_right = 161.0
+offset_bottom = 204.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TopContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/TopContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_otwpe")
+theme_override_font_sizes/font_size = 30
+text = "Roderick"
+horizontal_alignment = 1
+
+[node name="Bar" parent="VBoxContainer" instance=ExtResource("3_4fqxm")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ImageContainer" type="MarginContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Image" type="Sprite2D" parent="VBoxContainer/ImageContainer"]
+visible = false
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("4_ugm7f")
+centered = false
+offset = Vector2(-60, -40)
+flip_h = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/ImageContainer"]
+texture_filter = 1
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_l81pt")
+animation = &"idle"
+centered = false
+offset = Vector2(-55, -40)
+flip_h = true
+
+[node name="SwordAttack1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_2nmd0")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_x0vof")
+volume_db = -10.0

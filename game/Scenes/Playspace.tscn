@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://do6st57y3qahk"]
+[gd_scene load_steps=32 format=3 uid="uid://do6st57y3qahk"]
 
 [ext_resource type="Script" path="res://Scripts/Playspace.gd" id="1_0opyr"]
 [ext_resource type="PackedScene" uid="uid://bjoewvcn45yt1" path="res://Scenes/Hero.tscn" id="2_66an5"]
 [ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="4_8o1l3"]
 [ext_resource type="Script" path="res://Scripts/Hand.gd" id="4_gbns5"]
+[ext_resource type="Script" path="res://Scripts/Bandit.gd" id="4_rbf4y"]
 [ext_resource type="PackedScene" uid="uid://ca1crfpjbvmfg" path="res://Scenes/Archer.tscn" id="4_yvg4i"]
 [ext_resource type="Script" path="res://Scripts/Archer.gd" id="5_ds7de"]
 [ext_resource type="Script" path="res://Scripts/Deck.gd" id="5_giief"]
@@ -12,7 +13,9 @@
 [ext_resource type="Script" path="res://Scripts/Rogue.gd" id="7_d6olg"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
 [ext_resource type="PackedScene" uid="uid://d4dlguoon0ljm" path="res://Scenes/Boss.tscn" id="8_50feg"]
+[ext_resource type="PackedScene" uid="uid://hbfp4moo7euv" path="res://Scenes/Roderick.tscn" id="8_nunjv"]
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="9_7msr0"]
+[ext_resource type="Script" path="res://Scripts/Roderick.gd" id="9_abj7m"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="10_n3ast"]
 [ext_resource type="Texture2D" uid="uid://dm5cmsjrbyv4b" path="res://Assets/Cards/CardExtras/CardBack.png" id="12_rin4n"]
 [ext_resource type="Texture2D" uid="uid://ch5fqnkn1t6cx" path="res://Assets/Cards/CardExtras/GoldCardBorder.png" id="13_y6xtf"]
@@ -115,6 +118,7 @@ offset_left = 712.0
 offset_top = 305.0
 offset_right = 873.0
 offset_bottom = 509.0
+script = ExtResource("4_rbf4y")
 
 [node name="Archer" parent="Enemies" instance=ExtResource("4_yvg4i")]
 visible = false
@@ -131,6 +135,14 @@ offset_top = 250.0
 offset_right = 900.0
 offset_bottom = 504.0
 script = ExtResource("7_d6olg")
+
+[node name="Roderick" parent="Enemies" instance=ExtResource("8_nunjv")]
+visible = false
+offset_left = 718.0
+offset_top = 234.0
+offset_right = 868.0
+offset_bottom = 446.0
+script = ExtResource("9_abj7m")
 
 [node name="Boss" parent="Enemies" instance=ExtResource("8_50feg")]
 visible = false
