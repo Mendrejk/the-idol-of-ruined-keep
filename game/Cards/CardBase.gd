@@ -33,6 +33,7 @@ func _ready():
 
 	$Card.texture = load(card_texture_path)
 	$Card.scale *= size / $Card.texture.get_size()
+	$Card.scale *= Vector2(1, 0.5)
 
 	$CardBack.scale *= size / $CardBack.texture.get_size()
 	$Focus.set_stretch_mode(TextureButton.STRETCH_SCALE)

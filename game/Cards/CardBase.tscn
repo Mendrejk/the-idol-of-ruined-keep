@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://duwluo50fu5ib"]
+[gd_scene load_steps=8 format=3 uid="uid://duwluo50fu5ib"]
 
 [ext_resource type="Script" path="res://Cards/CardBase.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b2c5w6bmu23h0" path="res://Assets/Cards/CardExtras/CardBorder2.png" id="2_tvsxb"]
+[ext_resource type="Texture2D" uid="uid://bk6f6ewvf5awe" path="res://Assets/Background/card_text_background.jpg" id="2_ujdv3"]
+[ext_resource type="Texture2D" uid="uid://f4vs205x737f" path="res://Assets/Cards/CardExtras/CardTextSeparator.png" id="4_22lkd"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="4_mlq8g"]
 [ext_resource type="Texture2D" uid="uid://ch5fqnkn1t6cx" path="res://Assets/Cards/CardExtras/GoldCardBorder.png" id="5_ctjub"]
 [ext_resource type="Texture2D" uid="uid://dm5cmsjrbyv4b" path="res://Assets/Cards/CardExtras/CardBack.png" id="6_u7fa5"]
@@ -12,8 +14,17 @@ offset_bottom = 350.0
 pivot_offset = Vector2(125, 175)
 script = ExtResource("1")
 
+[node name="TextBackground" type="Sprite2D" parent="."]
+position = Vector2(125, 175)
+texture = ExtResource("2_ujdv3")
+
 [node name="Card" type="Sprite2D" parent="."]
 centered = false
+
+[node name="TextSeparator" type="Sprite2D" parent="."]
+position = Vector2(125, 182)
+scale = Vector2(2, 2)
+texture = ExtResource("4_22lkd")
 
 [node name="Border" type="Sprite2D" parent="."]
 texture = ExtResource("2_tvsxb")
@@ -23,7 +34,7 @@ centered = false
 layout_mode = 2
 
 [node name="TopGap" type="MarginContainer" parent="Bars"]
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(25, 200)
 layout_mode = 2
 
 [node name="TopBar" type="HBoxContainer" parent="Bars"]
@@ -31,7 +42,7 @@ custom_minimum_size = Vector2(200, 15)
 layout_mode = 2
 
 [node name="Leftgap" type="MarginContainer" parent="Bars/TopBar"]
-custom_minimum_size = Vector2(25, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
 [node name="Name" type="MarginContainer" parent="Bars/TopBar"]
@@ -78,6 +89,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="SpecialText" type="HBoxContainer" parent="Bars"]
+visible = false
 custom_minimum_size = Vector2(200, 15)
 layout_mode = 2
 
@@ -106,7 +118,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="LowerGap" type="MarginContainer" parent="Bars"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
 [node name="BottomBar" type="HBoxContainer" parent="Bars"]
@@ -114,7 +126,7 @@ custom_minimum_size = Vector2(200, 15)
 layout_mode = 2
 
 [node name="Leftgap" type="MarginContainer" parent="Bars/BottomBar"]
-custom_minimum_size = Vector2(25, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 
 [node name="Value" type="MarginContainer" parent="Bars/BottomBar"]
