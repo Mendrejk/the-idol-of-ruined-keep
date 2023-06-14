@@ -18,6 +18,7 @@ func generate_map() -> TempMapLocationData:
 	var miniboss_location: int = int(map_length * Globals.map_miniboss_length_ratio)
 
 	var root: TempMapLocationData = TempMapLocationData.new()
+	root.is_player_location = true
 	var visit_queue: Array[TempMapLocationData] = [root]
 
 	var position_map: TempPositionMap = TempPositionMap.new()

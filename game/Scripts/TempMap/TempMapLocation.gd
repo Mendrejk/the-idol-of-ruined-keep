@@ -45,7 +45,7 @@ func _on_input_event(viewport, event, shape_idx):
 			parent.is_player_location = false
 		location_data.is_player_location = true
 
-		Globals.level_number += 1
+		Globals.level_number = location_data.coordinates.y
 		print(Globals.level_number)
 		if Globals.level_number == 3:
 			get_tree().change_scene_to_file("res://Scenes/Dialogue.tscn")

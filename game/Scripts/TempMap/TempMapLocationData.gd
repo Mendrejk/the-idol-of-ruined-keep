@@ -21,7 +21,6 @@ func _init(_parents: Array[TempMapLocationData] = [], _coordinates: Vector2i = V
 			_is_boss_location: bool = false):
 	parents = _parents
 	coordinates = _coordinates
-	print(coordinates)
 
 	deepness_level = _deepness_level
 	is_miniboss_location = _is_miniboss_location
