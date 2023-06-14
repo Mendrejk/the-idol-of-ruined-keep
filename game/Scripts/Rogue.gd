@@ -28,6 +28,7 @@ func ChangeEnemyHealth(Number):
 		get_tree().change_scene_to_file("res://Scenes/Map/Map.tscn")
 
 func EnemyAttack():
+	Damage = randi()%3+1
 	$SwordAttack1.play()
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("attack")
 	await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
