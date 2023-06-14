@@ -7,7 +7,7 @@ enum {
 }
 
 var Cards: Dictionary = {
-	AttackWeak : Card.new("Units","AttackWeak", 1, 1, "Akcja"),
-	AttackNormal : Card.new("Units","AttackNormal", 2, 2, "Akcja"),
-	AttackStrong : Card.new("Units","AttackStrong", 3, 3, "Akcja")
+	AttackWeak : Card.new("Units","AttackWeak", 1, 1, "Akcja", "Pchnięcie"),
+	AttackNormal : Card.new("Units","AttackNormal", 2, 2, "Akcja", "Garda"),
+	AttackStrong : Card.new("Units","AttackStrong", 3, 3, "Akcja", "Potężny Cios")
 }

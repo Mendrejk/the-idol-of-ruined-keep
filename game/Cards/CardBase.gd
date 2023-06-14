@@ -38,7 +38,7 @@ func _ready():
 	$Focus.set_stretch_mode(TextureButton.STRETCH_SCALE)
 	$Focus.set_scale( $Focus.scale * size / $Focus.size)
 
-	$Bars/TopBar/Name/CenterContainer/Name.text = card_data.name
+	$Bars/TopBar/Name/CenterContainer/Name.text = card_data.display_name
 	$Bars/TopBar/Cost/CenterContainer/Cost.text = str(card_data.cost)
 	$Bars/SpecialText/Type/CenterContainer/Type.text = card_data.type
 	$Bars/BottomBar/Value/CenterContainer/Value.text = str(card_data.value)
