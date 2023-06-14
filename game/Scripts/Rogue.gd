@@ -24,7 +24,7 @@ func ChangeEnemyHealth(Number):
 	#$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
 
 	if CurrentHealth <= 0:
-		get_tree().change_scene_to_file("res://Scenes/Map.tscn")
+		get_tree().change_scene_to_file("res://Scenes/Map/Map.tscn")
 
 func EnemyAttack():
 	$SwordAttack1.play()

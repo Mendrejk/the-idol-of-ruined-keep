@@ -25,6 +25,7 @@ func _ready():
 		self.size.y / 2 - root_location.sprite.texture.get_height() / 2
 	)
 	set_location_distance_from_top(root_location)
+	root_location.location_data.is_player_location = true
 
 	add_child(root_location)
 	location_map[root_location_data.coordinates] = root_location
@@ -78,6 +79,8 @@ func _ready():
 			line.antialiased = true
 			add_child(line)
 			move_child(line, 1)
+
+	$MapOpen.play()
 
 
 func set_location_distance_from_top(location: Node2D):

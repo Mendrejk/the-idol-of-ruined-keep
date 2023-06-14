@@ -14,33 +14,40 @@ var parent_locations: Array[Vector2] = []
 var distance_from_top: float = 0
 
 
+func _ready():
+	if location_data.is_player_location:
+		scale = Vector2(1.5, 1.5)
+
+
+func _is_any_parent_player_location() -> bool:
+	for parent in location_data.parents:
+		if parent.is_player_location:
+			return true
+
+	return false
+
+
 func _on_mouse_entered():
-	animation_player.play('hover_animation')
+	if _is_any_parent_player_location():
+		animation_player.play('hover_animation')
 
 
 func _on_mouse_exited():
-	animation_player.play_backwards('hover_animation')
-	
-	
-func _angle_between(from: Vector2, to: Vector2) -> float:
-	var x: float = from.x
-	var y: float = from.y
-
-	var delta_x: float = to.x - x
-	var delta_y: float = to.y - y
-
-	var rotation: float = -atan2(delta_x, delta_y)
-	rotation = deg_to_rad(rad_to_deg(rotation) + 180)
-
-	return rotation
+	if _is_any_parent_player_location():
+		animation_player.play_backwards('hover_animation')
 
 
-func _get_point_on_circle(center: Vector2, radians: float, radius: float) -> Vector2:
-	var x: float = center.x
-	var y: float = center.y
+func _on_input_event(viewport, event, shape_idx):
+	var is_event_left_click: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed
 
-	radians -= deg_to_rad(90.0)
-	var x_pos_y: float = round((x + cos(radians) * radius));
-	var y_pos_y: float = round((y + sin(radians) * radius));
+	if is_event_left_click and _is_any_parent_player_location():
+		for parent in location_data.parents:
+			parent.is_player_location = false
+		location_data.is_player_location = true
 
-	return Vector2(x_pos_y, y_pos_y);
+		Globals.level_number += 1
+		print(Globals.level_number)
+		if Globals.level_number == 3:
+			get_tree().change_scene_to_file("res://Scenes/Dialogue.tscn")
+		else:
+			get_tree().change_scene_to_file("res://Scenes/Playspace.tscn")

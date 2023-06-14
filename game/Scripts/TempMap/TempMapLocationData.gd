@@ -8,7 +8,6 @@ var children: Array[TempMapLocationData] = []
 var coordinates: Vector2i
 
 var is_player_location: bool = false
-var is_next_location: bool = false
 var is_miniboss_location: bool
 var is_boss_location: bool
 
