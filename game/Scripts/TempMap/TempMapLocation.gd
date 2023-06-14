@@ -15,6 +15,11 @@ var distance_from_top: float = 0
 
 
 func _ready():
+	if location_data.is_boss_location:
+		$BattleLocation.texture = load("res://Assets/Map/boss_node.png")
+	elif location_data.is_miniboss_location:
+		$BattleLocation.texture = load("res://Assets/Map/miniboss_node.png")
+
 	if location_data.is_player_location:
 		scale = Vector2(1.5, 1.5)
 

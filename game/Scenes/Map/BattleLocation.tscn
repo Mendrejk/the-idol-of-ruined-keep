@@ -25,7 +25,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7hv4c"]
-radius = 34.1321
+radius = 33.0
 
 [node name="Area2D" type="Area2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("2_i5rew")
