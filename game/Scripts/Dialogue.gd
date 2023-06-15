@@ -8,6 +8,8 @@ func _ready():
 		play_intro()
 	elif Globals.RoderickDefeated:
 		play_roderick_leave()
+	elif Globals.BossDefeated:
+		play_boss_defeated()
 	elif Globals.level_number == ((Globals.map_length*Globals.map_miniboss_length_ratio)-1):
 		play_roderick_entry()
 	elif Globals.level_number == Globals.map_length-1:
@@ -175,3 +177,22 @@ func play_roderick_leave():
 	await textbox_closed
 	Globals.RoderickDefeated = false
 	get_tree().change_scene_to_file("res://Scenes/Map/Map.tscn")
+
+
+func play_boss_defeated():
+	$Background/TextBox.hide()
+	$Background/TextBox/Boss.show()
+	display_text("Herszt bandytów: To... niemożliwe. Pokonany przez 
+	kogoś takiego jak ty...")
+	await textbox_closed
+	$Background/TextBox/Boss.hide()
+	$Background/TextBox/Leon.show()
+	display_text("Leon: Sprawiedliwość zwyciężyła.")
+	await textbox_closed
+	$Background/TextBox/Leon.hide()
+	$Background/TextBox/Leader.show()
+	display_text("Wódz wioski: Dziękujemy Ci Rodericku! Uratowałeś naszą wioskę.
+	Zawsze znajdziesz u nas posiłek i dach nad głową.")
+	await textbox_closed
+	Globals.BossDefeated = false
+	get_tree().change_scene_to_file("res://Scenes/StartMenu.tscn")

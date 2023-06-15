@@ -24,7 +24,9 @@ func ChangeEnemyHealth(Number):
 	await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
 	if CurrentHealth <= 0:
-		get_tree().change_scene_to_file("res://Scenes/StartMenu.tscn")
+		Globals.BossDefeated = true
+		get_tree().change_scene_to_file("res://Scenes/Dialogue.tscn")
+
 
 func EnemyAttack():
 	Damage = randi()%3+1

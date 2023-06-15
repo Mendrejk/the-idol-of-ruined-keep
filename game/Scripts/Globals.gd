@@ -19,6 +19,7 @@ var level_number = 0
 
 # Enemy globals
 var RoderickDefeated = false
+var BossDefeated = false
 var enemy_number
 
 # Map globals
