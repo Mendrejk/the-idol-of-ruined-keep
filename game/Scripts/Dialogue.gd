@@ -88,6 +88,10 @@ func play_boss_entry():
 	display_text("Herszt bandytów: Hm? Kto śmie zakłócać mój spokój podczas 
 	biesiady?")
 	await textbox_closed
+	$Background/TextBox/Boss.show()
+	display_text("Herszt bandytów: Hm? Kto śmie zakłócać mój spokój podczas 
+	biesiady?")
+	await textbox_closed
 	$Background/TextBox/Boss.hide()
 	$Background/TextBox/Leon.show()
 	display_text("Leon: Pewien zdeterminowany rycerz.")
@@ -116,6 +120,9 @@ func play_boss_entry():
 
 func play_roderick_entry():
 	$Background/TextBox.hide()
+	$Background/TextBox/Roderick.show()
+	display_text("Roderick: Proszę, proszę, kogo my tu mamy.")
+	await textbox_closed
 	$Background/TextBox/Roderick.show()
 	display_text("Roderick: Proszę, proszę, kogo my tu mamy.")
 	await textbox_closed
