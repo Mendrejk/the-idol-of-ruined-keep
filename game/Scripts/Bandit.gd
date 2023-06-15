@@ -4,7 +4,7 @@ extends MarginContainer
 var CurrentHealth = 10
 var MaxHealth = 10
 var Damage = 1
-
+var DodgeChance = 10
 
 func _ready():
 	pass

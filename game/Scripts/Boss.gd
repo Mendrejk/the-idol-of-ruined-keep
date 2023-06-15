@@ -4,7 +4,7 @@ extends MarginContainer
 var CurrentHealth = 15
 var MaxHealth = 15
 var Damage = 3
-
+var DodgeChance = 10
 
 func _ready():
 	pass
@@ -23,9 +23,8 @@ func ChangeEnemyHealth(Number):
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("hurt")
 	await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
-
 	if CurrentHealth <= 0:
-		get_tree().change_scene_to_file("res://Scripts/StartMenu.gd")
+		get_tree().change_scene_to_file("res://Scenes/StartMenu.tscn")
 
 func EnemyAttack():
 	Damage = randi()%3+1

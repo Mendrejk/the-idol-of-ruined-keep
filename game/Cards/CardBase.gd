@@ -102,7 +102,10 @@ func _input(event):
 								enemy = global_enemy
 								var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
 								#first_enemy.ChangeBanditHealth(AttackNo)
-								enemy.ChangeEnemyHealth(AttackNo)
+								if(randi()%enemy.DodgeChance+1 == 1):
+									print("unik!")
+								else:
+									enemy.ChangeEnemyHealth(AttackNo)
 							setup = true
 							MovingtoDiscard = true
 							state = Globals.CardState.MoveDrawnCardToDiscard
