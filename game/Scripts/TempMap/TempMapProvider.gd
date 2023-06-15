@@ -16,6 +16,7 @@ func get_map() -> TempMapLocationData:
 func generate_map() -> TempMapLocationData:
 	var map_length: int = randi_range(Globals.map_min_length, Globals.map_max_length)
 	var miniboss_location: int = int(map_length * Globals.map_miniboss_length_ratio)
+	Globals.map_length = map_length
 
 	var root: TempMapLocationData = TempMapLocationData.new()
 	root.is_player_location = true

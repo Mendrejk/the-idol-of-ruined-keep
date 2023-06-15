@@ -4,14 +4,14 @@ signal textbox_closed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Globals.level_number == 4:
-		play_boss_entry()
+	if Globals.level_number == 0:
+		play_intro()
 	elif Globals.RoderickDefeated:
 		play_roderick_leave()
-	elif Globals.level_number == 3:
+	elif Globals.level_number == ((Globals.map_length*Globals.map_miniboss_length_ratio)-1):
 		play_roderick_entry()
-	else:
-		play_intro()
+	elif Globals.level_number == Globals.map_length-1:
+		play_boss_entry()
 
 
 func _input(event):

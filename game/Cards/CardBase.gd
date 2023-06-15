@@ -93,21 +93,8 @@ func _input(event):
 							$'../../Characters/Hero'.HeroAttack()
 							# TODO: add some enemy select mechanic if there are more enemies
 							#var first_enemy = $'../../Enemies'.get_child(0)
-							if Globals.level_number == 0:
-								var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
-								enemy = global_enemy
-							elif Globals.level_number == 1:
-								var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
-								enemy = global_enemy
-							elif Globals.level_number == 2:
-								var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
-								enemy = global_enemy
-							elif Globals.level_number == 3:
-								var global_enemy = $'../../Enemies'.get_child(3)
-								enemy = global_enemy
-							elif Globals.level_number == 4:
-								var global_enemy = $'../../Enemies'.get_child(4)
-								enemy = global_enemy
+							var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
+							enemy = global_enemy
 							var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
 							#first_enemy.ChangeBanditHealth(AttackNo)
 							enemy.ChangeEnemyHealth(AttackNo)

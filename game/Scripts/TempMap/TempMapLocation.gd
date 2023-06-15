@@ -52,7 +52,7 @@ func _on_input_event(viewport, event, shape_idx):
 
 		Globals.level_number = location_data.coordinates.y
 		print(Globals.level_number)
-		if Globals.level_number == 3:
+		if (Globals.level_number == (Globals.map_length-1)) or (Globals.level_number == ((Globals.map_length*Globals.map_miniboss_length_ratio)-1)):
 			get_tree().change_scene_to_file("res://Scenes/Dialogue.tscn")
 		else:
 			get_tree().change_scene_to_file("res://Scenes/Playspace.tscn")

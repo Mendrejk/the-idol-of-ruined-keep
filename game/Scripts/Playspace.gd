@@ -10,24 +10,31 @@ var enemy
 var dodge_chance
 
 func _ready():
+	print(Globals.map_length)
 	deck.deck_emptied.connect(_on_deck_emptied)
 	if Globals.level_number == 0:
+		Globals.enemy_number = 0
+		var global_enemy = $Enemies.get_child(Globals.enemy_number)
+		enemy = global_enemy
+	elif Globals.level_number < ((Globals.map_length*Globals.map_miniboss_length_ratio)-1):
 		Globals.enemy_number = randi()%2
 		var global_enemy = $Enemies.get_child(Globals.enemy_number)
 		enemy = global_enemy
-	elif Globals.level_number == 1:
-		Globals.enemy_number = randi()%2
-		var global_enemy = $Enemies.get_child(Globals.enemy_number)
-		enemy = global_enemy
-	elif Globals.level_number == 2:
+	elif Globals.level_number < ((Globals.map_length*Globals.map_miniboss_length_ratio)-1):
 		Globals.enemy_number = randi()%2+1
 		var global_enemy = $Enemies.get_child(Globals.enemy_number)
 		enemy = global_enemy
-	elif Globals.level_number == 3:
-		var global_enemy = $Enemies.get_child(3)
+	elif Globals.level_number == ((Globals.map_length*Globals.map_miniboss_length_ratio)-1):
+		Globals.enemy_number = 3
+		var global_enemy = $Enemies.get_child(Globals.enemy_number)
 		enemy = global_enemy
-	elif Globals.level_number == 4:
-		var global_enemy = $Enemies.get_child(4)
+	elif Globals.level_number < Globals.map_length-1:
+		Globals.enemy_number = 2
+		var global_enemy = $Enemies.get_child(Globals.enemy_number)
+		enemy = global_enemy
+	elif Globals.level_number == Globals.map_length-1:
+		Globals.enemy_number = 4
+		var global_enemy = $Enemies.get_child(Globals.enemy_number)
 		enemy = global_enemy
 	elif Globals.level_number == 5:
 		get_tree().change_scene_to_file("res://Scenes/StartMenu.tscn")
