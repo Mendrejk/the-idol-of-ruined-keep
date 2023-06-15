@@ -90,14 +90,19 @@ func _input(event):
 							MovingtoInPlay = true
 							state = Globals.CardState.InPlay
 							Card_Select = true
-							$'../../Characters/Hero'.HeroAttack()
-							# TODO: add some enemy select mechanic if there are more enemies
-							#var first_enemy = $'../../Enemies'.get_child(0)
-							var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
-							enemy = global_enemy
-							var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
-							#first_enemy.ChangeBanditHealth(AttackNo)
-							enemy.ChangeEnemyHealth(AttackNo)
+							
+							if (card_data.name == "Heal"):
+								var hero = $'../../Characters/Hero'
+								hero.heal(4)
+							else:
+								$'../../Characters/Hero'.HeroAttack()
+								# TODO: add some enemy select mechanic if there are more enemies
+								#var first_enemy = $'../../Enemies'.get_child(0)
+								var global_enemy = $'../../Enemies'.get_child(Globals.enemy_number)
+								enemy = global_enemy
+								var AttackNo = int($Bars/BottomBar/Value/CenterContainer/Value.text.left(1))
+								#first_enemy.ChangeBanditHealth(AttackNo)
+								enemy.ChangeEnemyHealth(AttackNo)
 							setup = true
 							MovingtoDiscard = true
 							state = Globals.CardState.MoveDrawnCardToDiscard

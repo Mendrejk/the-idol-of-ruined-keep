@@ -22,6 +22,13 @@ func ChangeHeroHealth(Number):
 	await $VBoxContainer/ImageContainer/AnimatedSprite2D.animation_finished
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("idle")
 
+func heal(Number):
+	CurrentHealth += Number
+	if CurrentHealth > MaxHealth:
+		CurrentHealth = MaxHealth
+	$VBoxContainer/Bar/TextureProgressBar.value = 100*CurrentHealth/MaxHealth
+	$VBoxContainer/Bar/Count/Number.text = str(CurrentHealth)
+
 func HeroAttack():
 	$SwordAttack1.play()
 	$VBoxContainer/ImageContainer/AnimatedSprite2D.play("attack")

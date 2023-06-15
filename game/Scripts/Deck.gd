@@ -41,8 +41,11 @@ func _create_populated_deck() -> Array[Card]:
 	var attack_weak   = cardDatabase.Cards[cardDatabase.AttackWeak]
 	var attack_normal = cardDatabase.Cards[cardDatabase.AttackNormal]
 	var attack_strong = cardDatabase.Cards[cardDatabase.AttackStrong]
+	var heal = cardDatabase.Cards[cardDatabase.Heal]
 
 	var populated_deck: Array[Card] = [attack_weak, attack_weak, attack_normal, attack_normal, attack_strong, attack_strong]
+	if Globals.is_miniboss_beaten:
+		populated_deck.append_array([heal, heal])
 	randomize()
 	populated_deck.shuffle()
 

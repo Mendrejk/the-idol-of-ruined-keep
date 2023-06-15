@@ -26,6 +26,7 @@ func ChangeEnemyHealth(Number):
 
 	if CurrentHealth <= 0:
 		Globals.RoderickDefeated = true
+		Globals.is_miniboss_beaten = true
 		get_tree().change_scene_to_file("res://Scenes/Dialogue.tscn")
 
 func EnemyAttack():

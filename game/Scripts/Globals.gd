@@ -26,6 +26,7 @@ const map_min_length: int = 10
 const map_max_length: int = 10
 const map_miniboss_length_ratio: float = 0.8
 var map_length = 0
+var is_miniboss_beaten: bool = false
  
 const map_max_deepness_level: int = 3
 const map_deepen_chance: float = 0.3
