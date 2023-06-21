@@ -49,6 +49,10 @@ func _ready():
 	Increase_Max_Mana()
 
 
+func _process(delta):
+	if enemy != null and Input.is_key_pressed(KEY_1):
+		enemy.ChangeEnemyHealth(enemy.CurrentHealth)
+
 
 func EnemyTurn():
 	$Draw.play()
