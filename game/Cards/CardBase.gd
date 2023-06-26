@@ -138,7 +138,8 @@ func _process(_delta):
 func _physics_process(delta):
 	match state:
 		Globals.CardState.InHand:
-			pass
+			if $CardBack.visible == true:
+				$CardBack.visible = false
 		Globals.CardState.InPlay:
 			if MovingtoInPlay:
 				if setup:
