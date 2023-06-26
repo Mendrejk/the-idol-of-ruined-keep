@@ -41,8 +41,9 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpnt5"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="StartMenu" type="Node2D"]
+[node name="StartMenu" type="Node2D" node_paths=PackedStringArray("audio_slider")]
 script = ExtResource("1_m24ia")
+audio_slider = NodePath("Background/PanelContainer/MarginContainer/TextRow/SubtextRow/HBoxContainer/HSlider")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(576, 324)

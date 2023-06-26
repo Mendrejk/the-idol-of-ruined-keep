@@ -1,9 +1,11 @@
 extends Node2D
 
 var master_bus = AudioServer.get_bus_index("Master")
+@export var audio_slider: HSlider
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	audio_slider.value = db_to_linear(AudioServer.get_bus_volume_db(master_bus))
 	pass # Replace with function body.
 
 

@@ -10,8 +10,10 @@ var enemy
 var dodge_chance
 
 var master_bus = AudioServer.get_bus_index("Master")
+@export var audio_slider: HSlider
 
 func _ready():
+	audio_slider.value = db_to_linear(AudioServer.get_bus_volume_db(master_bus))
 	print(Globals.map_length)
 	deck.deck_emptied.connect(_on_deck_emptied)
 	if Globals.level_number == 0:
