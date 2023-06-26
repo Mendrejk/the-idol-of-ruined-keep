@@ -114,19 +114,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_oow4u")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_pmvjt")
 text = "Start"
 
-[node name="SettingsButton" type="Button" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow"]
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_vccu1")
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_qdj7t")
-theme_override_styles/hover = SubResource("StyleBoxFlat_dhe30")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_xpnt5")
-text = "Ustawienia"
-
 [node name="QuitButton" type="Button" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow"]
 layout_mode = 2
 size_flags_vertical = 8

@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Rogue.gd" id="7_d6olg"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
 [ext_resource type="PackedScene" uid="uid://d4dlguoon0ljm" path="res://Scenes/Boss.tscn" id="8_50feg"]
-[ext_resource type="PackedScene" path="res://Scenes/Roderick.tscn" id="8_nunjv"]
+[ext_resource type="PackedScene" uid="uid://hbfp4moo7euv" path="res://Scenes/Roderick.tscn" id="8_nunjv"]
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="9_7msr0"]
 [ext_resource type="Script" path="res://Scripts/Roderick.gd" id="9_abj7m"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="10_n3ast"]
@@ -222,22 +222,18 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_t2il8")
 text = "Zakończ turę"
 
 [node name="PlayerPanel" type="Panel" parent="."]
-offset_right = 400.0
+offset_right = 1150.0
 offset_bottom = 50.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_w0ybe")
 
 [node name="Playerdata" type="HBoxContainer" parent="PlayerPanel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -137.0
 offset_top = -17.5
-offset_right = 137.0
+offset_right = 374.0
 offset_bottom = 17.5
-grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
@@ -299,6 +295,33 @@ text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="PlayerPanel"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -361.0
+offset_top = -20.0
+offset_right = -11.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VolumeLabel" type="Label" parent="PlayerPanel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_n3ast")
+theme_override_font_sizes/font_size = 40
+text = "Dźwięk"
+
+[node name="HSlider" type="HSlider" parent="PlayerPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 100.0
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_vv45q")
@@ -328,3 +351,4 @@ text = "Indicator"
 
 [connection signal="pressed" from="TurnPanel/Turn/EndOfTurn" to="." method="_on_end_of_turn_pressed"]
 [connection signal="pressed" from="TurnPanel/Turn/EndOfTurn" to="Deck" method="_on_end_of_turn_pressed"]
+[connection signal="value_changed" from="PlayerPanel/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]

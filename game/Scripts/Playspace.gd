@@ -9,6 +9,8 @@ var mana_value = mana_max_value
 var enemy
 var dodge_chance
 
+var master_bus = AudioServer.get_bus_index("Master")
+
 func _ready():
 	print(Globals.map_length)
 	deck.deck_emptied.connect(_on_deck_emptied)
@@ -99,3 +101,11 @@ func Load_Mana():
 	$PlayerPanel/Playerdata/TextureProgressBar.value = mana_value
 	$PlayerPanel/Playerdata/TextureProgressBar/Mana.text = str(mana_value)
 	$PlayerPanel/Playerdata/TextureProgressBar/MaxMana.text = str(mana_value)
+
+
+func _on_h_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(master_bus, value/10)
+	if value == 0:
+		AudioServer.set_bus_mute(master_bus, true)
+	else:
+		AudioServer.set_bus_mute(master_bus, false)
