@@ -138,8 +138,7 @@ func _process(_delta):
 func _physics_process(delta):
 	match state:
 		Globals.CardState.InHand:
-			if $CardBack.visible == true:
-				$CardBack.visible = false
+			pass
 		Globals.CardState.InPlay:
 			if MovingtoInPlay:
 				if setup:
@@ -207,6 +206,9 @@ func _physics_process(delta):
 			if setup:
 				Setup()
 			if t <= 1:
+				if $CardBack.visible and t > 0.5:
+					$CardBack.visible = false
+
 				if Move_Neighbour_Card_Check == true:
 					Move_Neighbour_Card_Check = false
 				position = startpos.lerp(targetpos, t)
