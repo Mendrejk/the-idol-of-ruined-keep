@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://uwvlgxcym1pg"]
+[gd_scene load_steps=15 format=3 uid="uid://uwvlgxcym1pg"]
 
 [ext_resource type="Script" path="res://Scripts/StartMenu.gd" id="1_m24ia"]
 [ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="2_l2fpp"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="3_vccu1"]
+[ext_resource type="AudioStream" uid="uid://xe3qf7mmtlqy" path="res://Assets/Sounds/Menu_music.wav" id="4_5kspp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qubqd"]
 bg_color = Color(0.152941, 0.152941, 0.152941, 1)
@@ -144,6 +145,11 @@ size_flags_vertical = 1
 max_value = 2.0
 step = 0.1
 value = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5kspp")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="pressed" from="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow/QuitButton" to="." method="_on_quit_button_pressed"]

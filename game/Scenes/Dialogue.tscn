@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://sh11c1df5r06"]
+[gd_scene load_steps=11 format=3 uid="uid://sh11c1df5r06"]
 
 [ext_resource type="Script" path="res://Scripts/Dialogue.gd" id="1_eyi00"]
 [ext_resource type="Texture2D" uid="uid://cnyhj24dbwtnk" path="res://Assets/Background/Background.png" id="1_xgwgp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://vurhyv0dcliq" path="res://Assets/Cards/Characters/Hero/Portrait/Hero_portrait.png" id="4_a2ghc"]
 [ext_resource type="Texture2D" uid="uid://c4xdaxhlaw5s0" path="res://Assets/Cards/Enemies/Roderick/Portrait/Roderick_portrait.png" id="5_and3s"]
 [ext_resource type="Texture2D" uid="uid://ba5d621ukrmvi" path="res://Assets/Cards/Enemies/Boss/Portrait/Boss.png" id="5_xog2k"]
+[ext_resource type="AudioStream" uid="uid://xe3qf7mmtlqy" path="res://Assets/Sounds/Menu_music.wav" id="8_45n7j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77110"]
 bg_color = Color(0.152941, 0.152941, 0.152941, 1)
@@ -121,3 +122,8 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_gbjyb")
 theme_override_font_sizes/font_size = 50
 text = ">"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_45n7j")
+volume_db = -5.0
+autoplay = true
