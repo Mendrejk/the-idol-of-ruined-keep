@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Rogue.gd" id="7_d6olg"]
 [ext_resource type="Script" path="res://Scripts/DiscardPile.gd" id="7_s8njd"]
 [ext_resource type="PackedScene" uid="uid://d4dlguoon0ljm" path="res://Scenes/Boss.tscn" id="8_50feg"]
-[ext_resource type="PackedScene" uid="uid://hbfp4moo7euv" path="res://Scenes/Roderick.tscn" id="8_nunjv"]
+[ext_resource type="PackedScene" path="res://Scenes/Roderick.tscn" id="8_nunjv"]
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="9_7msr0"]
 [ext_resource type="Script" path="res://Scripts/Roderick.gd" id="9_abj7m"]
 [ext_resource type="FontFile" uid="uid://bpfjrwy46lt0r" path="res://Assets/Font/m5x7.ttf" id="10_n3ast"]
@@ -320,7 +320,9 @@ text = "Dźwięk"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-value = 100.0
+max_value = 2.0
+step = 0.1
+value = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

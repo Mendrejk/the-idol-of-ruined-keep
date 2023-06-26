@@ -1,5 +1,6 @@
 extends Node2D
 
+var master_bus = AudioServer.get_bus_index("Master")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,3 +18,11 @@ func _on_start_button_pressed():
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+
+func _on_h_slider_value_changed(value):
+	AudioServer.set_bus_volume_db(master_bus, linear_to_db(value))
+	if value == 0:
+		AudioServer.set_bus_mute(master_bus, true)
+	else:
+		AudioServer.set_bus_mute(master_bus, false)

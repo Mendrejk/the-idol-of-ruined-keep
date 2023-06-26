@@ -104,7 +104,7 @@ func Load_Mana():
 
 
 func _on_h_slider_value_changed(value):
-	AudioServer.set_bus_volume_db(master_bus, value/10)
+	AudioServer.set_bus_volume_db(master_bus, linear_to_db(value))
 	if value == 0:
 		AudioServer.set_bus_mute(master_bus, true)
 	else:

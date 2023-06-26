@@ -127,5 +127,24 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_dhe30")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xpnt5")
 text = "Wyjdź"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vccu1")
+theme_override_font_sizes/font_size = 40
+text = "Dźwięk"
+
+[node name="HSlider" type="HSlider" parent="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 2.0
+step = 0.1
+value = 1.0
+
 [connection signal="pressed" from="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/ButtonsRow/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="Background/PanelContainer/MarginContainer/TextRow/SubtextRow/HBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
